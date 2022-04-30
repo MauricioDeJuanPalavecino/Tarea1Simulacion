@@ -10,7 +10,7 @@ class exponencial:
         self.lamb = lamb
         self.congru = congruencial_mult
         self.arrayNumAleratorios = self.formular()
-        self.res_fda = self.funcion_densidad_probabilidad()
+        self.res_fda = self.funcion_distribucion_acumulada()
         self.res_fdp = self.funcion_densidad_probabilidad()
 
     #GETTERS
@@ -56,8 +56,8 @@ ex = exponencial(2, 1000, cm)
 var_alea = ex.get_array() #eje horizontal en grafico
 
 
-fda = ex.funcion_distribucion_acumulada() #opcion de eje vertical en grafico
-fdp = ex.funcion_densidad_probabilidad() #opcion de eje vertical en grafico
+fda = ex.res_fda() #opcion de eje vertical en grafico
+fdp = ex.res_fdp() #opcion de eje vertical en grafico
 
 
 
