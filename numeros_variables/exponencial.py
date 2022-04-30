@@ -56,8 +56,8 @@ ex = exponencial(2, 1000, cm)
 var_alea = ex.get_array() #eje horizontal en grafico
 
 
-fda = ex.res_fda() #opcion de eje vertical en grafico
-fdp = ex.res_fdp() #opcion de eje vertical en grafico
+fda = ex.get_array_fda() #opcion de eje vertical en grafico
+fdp = ex.get_array_fdp() #opcion de eje vertical en grafico
 
 
 
