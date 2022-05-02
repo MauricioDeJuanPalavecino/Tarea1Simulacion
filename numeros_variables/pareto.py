@@ -29,7 +29,7 @@ class pareto:
         arrayNumAleratorios = []
         for i in range(0, self.cant_num_alea):
             value = self.congru.generar()
-            x = ( self.b / ( 1 - math.pow(value, (1 / self.a)) ) )
+            x = ( self.b / (math.pow(1 - value, (1 / self.a)) ) )
             arrayNumAleratorios.append(x)
         arrayNumAleratorios.sort()
         return arrayNumAleratorios
