@@ -5,10 +5,10 @@ import matplotlib.pyplot as plt
 
 
 class exponencial:
-    def __init__(self, lamb, cant_num_alea, congruencial_mult):
+    def __init__(self, lamb, cant_num_alea, semilla_congru):
         self.cant_num_alea = cant_num_alea
         self.lamb = lamb
-        self.congru = congruencial_mult
+        self.congru = congruencial_mult(semilla_congru)
         self.arrayNumAleratorios = self.formular()
         self.res_fda = self.funcion_distribucion_acumulada()
         self.res_fdp = self.funcion_densidad_probabilidad()
@@ -47,30 +47,22 @@ class exponencial:
             if aleatoria >= 0:
                 res_fdp.append( self.lamb *  math.exp(-self.lamb*aleatoria))
         return res_fdp
-        
+    
+    def graficar(self, x, y):
+        fig, ax = plt.subplots()
+
+        ax.plot(x, y, linewidth=2.0)
+        #ax.scatter(x, y, vmin=0, vmax=100)
+
+        plt.show()
 
 
-cm = congruencial_mult(19)
-
-ex = exponencial(2, 1000, cm)
+"""
+ex = exponencial(2, 1000, 19)
 var_alea = ex.get_array() #eje horizontal en grafico
 
 
 fda = ex.get_array_fda() #opcion de eje vertical en grafico
 fdp = ex.get_array_fdp() #opcion de eje vertical en grafico
-
-
-
-
-
-#---------------- GRAFICA -------------------
-x = var_alea #variables aleratoreas FDA
-y = fda #luego de aplicar funcion de probabilidad a este resultado
-
-fig, ax = plt.subplots()
-
-ax.plot(x, y, linewidth=2.0)
-#ax.scatter(x, y, vmin=0, vmax=100)
-
-
-plt.show()
+ex.graficar(var_alea, fda)
+"""

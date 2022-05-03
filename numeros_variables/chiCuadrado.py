@@ -4,10 +4,10 @@ from scipy.special import gammainc
 import math
 
 class chiCuadrado:
-	def __init__(self, grados_libertad, cant_num_alea, congruencial_mult):
+	def __init__(self, grados_libertad, cant_num_alea, semilla_congru):
 		self.cant_num_alea = cant_num_alea
 		self.grados_libertad = grados_libertad
-		self.congru = congruencial_mult
+		self.congru = congruencial_mult(semilla_congru)
 		self.arrayNumAleratorios = self.formular()
 		self.res_fda = self.funcion_distribucion_acumulada()
 		self.res_fdp = self.funcion_densidad_probabilidad()
@@ -49,28 +49,21 @@ class chiCuadrado:
 			res_fdp.append((((1/2)**(self.grados_libertad/2))/math.gamma(self.grados_libertad/2))*((aleatoria)**((self.grados_libertad/2)-1))*math.exp(-aleatoria/2))
 		return res_fdp
 
+	def graficar(self, x, y):
+		fig, ax = plt.subplots()
+
+		ax.plot(x, y, linewidth=1.0)
+		#ax.scatter(x, y, vmin=0, vmax=100)
+
+		plt.show()
 
 
-cm = congruencial_mult(19)
-
-cc = chiCuadrado(1, 1000, cm)
+"""
+cc = chiCuadrado(1, 1000, 19)
 
 var_alea = cc.get_array()
 
 fda = cc.get_array_fda() #opcion de eje vertical en grafico
 fdp = cc.get_array_fdp() #opcion de eje vertical en grafico
-
-
-#Grafica
-
-
-x = var_alea #variables aleratoreas
-y = fdp #luego de aplicar funcion de probabilidad a este resultado
-
-fig, ax = plt.subplots()
-
-ax.plot(x, y, linewidth=1.0)
-#ax.scatter(x, y, vmin=0, vmax=100)
-#ax.scatter(x, y)
-
-plt.show()
+cc.graficar(var_alea, fda)
+"""

@@ -4,10 +4,10 @@ from scipy.special import gammainc
 import math
 
 class poisson:
-    def __init__(self, lamb, cant_num_alea, congruencial_mult):
+    def __init__(self, lamb, cant_num_alea, semilla_congru):
         self.cant_num_alea = cant_num_alea
         self.lamb = lamb
-        self.congru = congruencial_mult
+        self.congru = congruencial_mult(semilla_congru)
         self.arrayNumAleratorios = self.formular()
         self.res_fda = self.funcion_distribucion_acumulada()
         self.res_fdp = self.funcion_densidad_probabilidad()
@@ -50,30 +50,26 @@ class poisson:
             res_fda.append(valorFinal)
             valoresSum = 0
         return res_fda
-cm = congruencial_mult(19)
 
+    def graficar(self, x, y):
+        fig, ax = plt.subplots()
+
+        ax.plot(x, y, linewidth=2.0)
+        ax.scatter(x, y, vmin=0, vmax=100)
+        #ax.scatter(x, y)
+
+        plt.show()
+
+"""
 
 #permite maximo 171 numeros
-po = poisson(8, 20, cm)
+po = poisson(8, 20, 19)
 var_alea = po.get_array() #eje horizontal en grafico
 
 
 fda = po.get_array_fda() #opcion de eje vertical en grafico
 fdp = po.get_array_fdp() #opcion de eje vertical en grafico
+po.graficar(var_alea, fda)
+"""
 
 
-
-
-
-
-x = var_alea #variables aleratoreas FDA
-y = fdp #luego de aplicar funcion de probabilidad a este resultado
-
-fig, ax = plt.subplots()
-
-ax.plot(x, y, linewidth=2.0)
-ax.scatter(x, y, vmin=0, vmax=100)
-#ax.scatter(x, y)
-
-plt.show()
-#print(array)

@@ -5,10 +5,10 @@ from scipy.special import betainc
 import math
 
 class binomial:
-    def __init__(self, prob, cant_num_alea, congruencial_mult):
+    def __init__(self, prob, cant_num_alea, semilla_congru):
         self.cant_num_alea = cant_num_alea
         self.prob = prob
-        self.congru = congruencial_mult
+        self.congru = congruencial_mult(semilla_congru)
         self.arrayNumAleratorios = self.formular()
         self.res_fda = self.funcion_distribucion_acumulada()
         self.res_fdp = self.funcion_masa_probabilidad()
@@ -43,30 +43,28 @@ class binomial:
         for aleatoria in self.arrayNumAleratorios:
             res_fda.append(betainc(self.cant_num_alea - aleatoria, aleatoria +1, 1 - self.prob))
         return res_fda
-cm = congruencial_mult(20)
+
+    def graficar(self, x, y):
+        # x= variables aleratoreas FDA
+        # y= luego de aplicar funcion de probabilidad a este resultado
+
+        fig, ax = plt.subplots()
+
+        ax.plot(x, y, linewidth=2.0)
+        ax.scatter(x, y, vmin=0, vmax=100)
+        #ax.scatter(x, y)
+
+        plt.show()
 
 
 #permite maximo 171 numeros
-bi = binomial(0.5, 40, cm)
+"""
+bi = binomial(0.5, 40, 20)
 var_alea = bi.get_array() #eje horizontal en grafico
-print(var_alea)
 
 fda = bi.get_array_fda() #opcion de eje vertical en grafico
 fdp = bi.get_array_fdp() #opcion de eje vertical en grafico
 
+bi.graficar(var_alea, fda)
+"""
 
-
-
-
-
-x = var_alea #variables aleratoreas FDA
-y = fda #luego de aplicar funcion de probabilidad a este resultado
-
-fig, ax = plt.subplots()
-
-ax.plot(x, y, linewidth=2.0)
-ax.scatter(x, y, vmin=0, vmax=100)
-#ax.scatter(x, y)
-
-plt.show()
-#print(array)

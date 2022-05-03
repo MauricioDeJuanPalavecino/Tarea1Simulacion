@@ -4,11 +4,11 @@ import math
 import matplotlib.pyplot as plt
 
 class normal_estandar:
-    def __init__(self, cant_num_alea, congruencial_mult):
+    def __init__(self, cant_num_alea, semilla_congru):
         self.media = 0
         self.desv_tipica = 1
         self.cant_num_alea = cant_num_alea
-        self.congru = congruencial_mult
+        self.congru = congruencial_mult(semilla_congru)
         self.arrayNumAleratorios = self.formular()
         self.res_fda = self.funcion_distribucion_acumulada()
         self.res_fdp = self.funcion_densidad_probabilidad()
@@ -36,7 +36,6 @@ class normal_estandar:
             arrayNumAleratorios.append(z1)
             arrayNumAleratorios.append(z2)
         arrayNumAleratorios.sort()
-
         return arrayNumAleratorios
     
     def funcion_distribucion_acumulada(self):
@@ -50,30 +49,22 @@ class normal_estandar:
         for aleatoria in self.arrayNumAleratorios:
             res_fdp.append( (1 / (self.desv_tipica*math.sqrt(2*math.pi))) * math.exp(-(1/2) * ((aleatoria-self.media)/self.desv_tipica)**2) )
         return res_fdp
-cm = congruencial_mult(19)
 
-ex = normal_estandar(600, cm)
+    def graficar(self, x, y):
+        fig, ax = plt.subplots()
+
+        ax.plot(x, y, linewidth=2.0)
+        #ax.scatter(x, y, vmin=0, vmax=100)
+
+        plt.show()
+
+
+"""
+ex = normal_estandar(600, 19)
 var_alea = ex.get_array() #eje horizontal en grafico
 
 
 fda = ex.get_array_fda() #opcion de eje vertical en grafico
 fdp = ex.get_array_fdp() #opcion de eje vertical en grafico
-
-
-
-
-
-#---------------- GRAFICA -------------------
-x = var_alea #variables aleratoreas FDA
-y = fda #luego de aplicar funcion de probabilidad a este resultado
-
-print(x)
-print(y)
-
-fig, ax = plt.subplots()
-
-ax.plot(x, y, linewidth=2.0)
-#ax.scatter(x, y, vmin=0, vmax=100)
-
-
-plt.show()
+ex.graficar(var_alea, fda)
+"""

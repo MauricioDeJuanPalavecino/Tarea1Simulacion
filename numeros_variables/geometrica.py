@@ -4,10 +4,10 @@ from scipy.special import gammainc
 import math
 
 class geometrica:
-    def __init__(self, prob, cant_num_alea, congruencial_mult):
+    def __init__(self, prob, cant_num_alea, semilla_congru):
         self.cant_num_alea = cant_num_alea
         self.prob = prob
-        self.congru = congruencial_mult
+        self.congru = congruencial_mult(semilla_congru)
         self.arrayNumAleratorios = self.formular()
         self.res_fda = self.funcion_distribucion_acumulada()
         self.res_fdp = self.funcion_densidad_probabilidad()
@@ -37,30 +37,28 @@ class geometrica:
             valor = 1 - (1 - self.prob)**(aleatoria+1)
             res_fda.append(valor)
         return res_fda
+
     def funcion_densidad_probabilidad(self):
         res_fdp = []
         for aleatoria in self.arrayNumAleratorios:
             valor = self.prob*((1-self.prob)**aleatoria)
             res_fdp.append(valor)
         return res_fdp
-cm = congruencial_mult(19)
 
-g = geometrica(0.32, 1000, cm)
+    def graficar(self, x, y):
+        fig, ax = plt.subplots()
+
+        ax.plot(x, y, linewidth=2.0)
+        #ax.scatter(x, y, vmin=0, vmax=100)
+
+        plt.show()
+    
+"""
+g = geometrica(0.32, 1000, 19)
 
 var_alea = g.get_array()
 
-#Grafica
-
 fda = g.get_array_fda() #opcion de eje vertical en grafico
 fdp = g.get_array_fdp() #opcion de eje vertical en grafico
-
-x = var_alea #variables aleratoreas FDA
-y = fdp #luego de aplicar funcion de probabilidad a este resultado
-
-fig, ax = plt.subplots()
-
-ax.plot(x, y, linewidth=2.0)
-#ax.scatter(x, y, vmin=0, vmax=100)
-#ax.scatter(x, y)
-
-plt.show()
+g.graficar(var_alea, fda)
+"""

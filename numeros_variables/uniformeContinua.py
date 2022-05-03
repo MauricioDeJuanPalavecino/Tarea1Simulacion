@@ -1,15 +1,19 @@
+from this import d
 from unittest import result
+from numpy import var
+
+from pyrsistent import v
 from congruencial_mult import *
 import math
 import matplotlib.pyplot as plt
 
 
 class uniformeContinua:
-    def __init__(self, a, b, cant_num_alea, congruencial_mult):
+    def __init__(self, a, b, cant_num_alea, semilla_congru):
         self.cant_num_alea = cant_num_alea
         self.a = a
         self.b = b
-        self.congru = congruencial_mult
+        self.congru = congruencial_mult(semilla_congru)
         self.arrayNumAleratorios = self.formular()
         self.res_fda = self.funcion_distribucion_acumulada()
         self.res_fdp = self.funcion_densidad_probabilidad()
@@ -45,8 +49,6 @@ class uniformeContinua:
                 res_fda.append(1)
         return res_fda
 
-    
-
     def funcion_densidad_probabilidad(self):
         res_fdp = []
         for aleatoria in self.arrayNumAleratorios:
@@ -57,30 +59,22 @@ class uniformeContinua:
 
         return res_fdp
 
+    def graficar(self, x, y):
+        fig, ax = plt.subplots()
+
+        ax.plot(x, y, linewidth=2.0)
+        #ax.scatter(x, y, vmin=0, vmax=100)
+
+        plt.show()
 
 
-cm = congruencial_mult(19)
 
-
-uc = uniformeContinua(2, 4, 100, cm)
+"""
+uc = uniformeContinua(2, 4, 100, 19)
 var_alea = uc.get_array() #eje horizontal en grafico
-
 
 fda = uc.get_array_fda() #opcion de eje vertical en grafico
 fdp = uc.get_array_fdp() #opcion de eje vertical en grafico
 
-
-
-
-#---------------- GRAFICA -------------------
-x = var_alea #variables aleratoreas FDA
-y = fda #luego de aplicar funcion de probabilidad a este resultado
-
-fig, ax = plt.subplots()
-
-ax.plot(x, y, linewidth=2.0)
-#ax.scatter(x, y, vmin=0, vmax=100)
-
-
-plt.show()
-
+uc.graficar(var_alea, fda)
+"""

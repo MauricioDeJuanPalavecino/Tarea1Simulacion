@@ -4,10 +4,10 @@ from scipy.special import gammainc
 import math
 
 class tstudent:
-    def __init__(self, grados_libertad, cant_num_alea, congruencial_mult):
+    def __init__(self, grados_libertad, cant_num_alea, semilla_congru):
         self.cant_num_alea = cant_num_alea
         self.grados_libertad = grados_libertad
-        self.congru = congruencial_mult
+        self.congru = congruencial_mult(semilla_congru)
         self.arrayNumAleratorios = self.formular()
         self.res_fda = self.funcion_distribucion_acumulada()
         self.res_fdp = self.funcion_densidad_probabilidad()
@@ -66,6 +66,7 @@ class tstudent:
             else:
                 res_fda.append((1/2)*(1+math.erf(aleatoria/math.sqrt(2))))
         return res_fda
+
     def funcion_densidad_probabilidad(self):
         res_fdp = []
         for aleatoria in self.arrayNumAleratorios:
@@ -81,22 +82,23 @@ class tstudent:
                 res_fdp.append((1/math.sqrt(2*math.pi))*math.exp(-aleatoria**2/2))
         return res_fdp
 
-cm = congruencial_mult(19)
+    def graficar(self, x, y):
+        fig, ax = plt.subplots()
 
-ts = tstudent(3, 10000, cm)
+        #ax.plot(x, y, linewidth=2.0)
+        ax.scatter(x, y, vmin=0, vmax=100)
+        #ax.scatter(x, y)
+
+        plt.show()
+
+
+"""
+ts = tstudent(3, 10000, 19)
 
 var_alea = ts.get_array()
 
 fda = ts.get_array_fda() #opcion de eje vertical en grafico
 fdp = ts.get_array_fdp() #opcion de eje vertical en grafico
 
-x = var_alea #variables aleratoreas FDA
-y = fdp #luego de aplicar funcion de probabilidad a este resultado
-
-fig, ax = plt.subplots()
-
-#ax.plot(x, y, linewidth=2.0)
-ax.scatter(x, y, vmin=0, vmax=100)
-#ax.scatter(x, y)
-
-plt.show()
+ts.graficar(var_alea, fda)
+"""

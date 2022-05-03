@@ -5,11 +5,11 @@ import matplotlib.pyplot as plt
 
 
 class erlang:
-    def __init__(self, lamb, cant_num_alea, k, congruencial_mult):
+    def __init__(self, lamb, cant_num_alea, k, semilla_congru):
         self.k = k
         self.cant_num_alea = cant_num_alea
         self.lamb = lamb
-        self.congru = congruencial_mult
+        self.congru = congruencial_mult(semilla_congru)
         self.arrayNumAleratorios = self.formular()
         self.res_fda = self.funcion_distribucion_acumulada()
         self.res_fdp = self.funcion_densidad_probabilidad()
@@ -56,29 +56,21 @@ class erlang:
             res_fdp.append(valorFinal)
         return res_fdp
    
+    def graficar(self, x, y):
+        fig, ax = plt.subplots()
+
+        ax.plot(x, y, linewidth=2.0)
+        #ax.scatter(x, y, vmin=0, vmax=100)
+
+        plt.show()
 
 
-cm = congruencial_mult(19)
-
-
-er = erlang(2, 100, 2, cm)
+"""
+er = erlang(2, 100, 2, 19)
 var_alea = er.get_array() #eje horizontal en grafico
 
 fda = er.get_array_fda() #opcion de eje vertical en grafico
 fdp = er.get_array_fdp() #opcion de eje vertical en grafico
+er.graficar(var_alea, fda)
 
-
-
-
-#---------------- GRAFICA -------------------
-
-x = var_alea #variables aleratoreas FDA
-y = fda #luego de aplicar funcion de probabilidad a este resultado
-
-fig, ax = plt.subplots()
-
-ax.plot(x, y, linewidth=2.0)
-#ax.scatter(x, y, vmin=0, vmax=100)
-
-
-plt.show()
+"""

@@ -5,11 +5,11 @@ import matplotlib.pyplot as plt
 
 
 class pareto:
-    def __init__(self, a, b, cant_num_alea, congruencial_mult):
+    def __init__(self, a, b, cant_num_alea, semilla_congru):
         self.cant_num_alea = cant_num_alea
         self.a = a
         self.b = b
-        self.congru = congruencial_mult
+        self.congru = congruencial_mult(semilla_congru)
         self.arrayNumAleratorios = self.formular()
         self.res_fda = self.funcion_distribucion_acumulada()
         self.res_fdp = self.funcion_densidad_probabilidad()
@@ -48,28 +48,19 @@ class pareto:
                 res_fdp.append( (  (self.a * math.pow(self.b, self.a)) / (math.pow(aleatoria, (self.a + 1))) ) )
         return res_fdp
 
+    def graficar(self, x, y):
+        fig, ax = plt.subplots()
 
+        ax.plot(x, y, linewidth=2.0)
+        #ax.scatter(x, y, vmin=0, vmax=100)
 
-cm = congruencial_mult(19)
+        plt.show()
 
-
-pa = pareto(2, 10, 100, cm)
+"""
+pa = pareto(2, 10, 100, 19)
 var_alea = pa.get_array() #eje horizontal en grafico
 
 fda = pa.get_array_fda() #opcion de eje vertical en grafico
 fdp = pa.get_array_fdp() #opcion de eje vertical en grafico
-
-
-
-
-#---------------- GRAFICA -------------------
-x = var_alea #variables aleratoreas FDA
-y = fda #luego de aplicar funcion de probabilidad a este resultado
-
-fig, ax = plt.subplots()
-
-ax.plot(x, y, linewidth=2.0)
-#ax.scatter(x, y, vmin=0, vmax=100)
-
-
-plt.show()
+pa.graficar(var_alea, fda)
+"""
