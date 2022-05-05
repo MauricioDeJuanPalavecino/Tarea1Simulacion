@@ -3,7 +3,6 @@ from congruencial_mult import *
 import math
 import matplotlib.pyplot as plt
 
-
 class erlang:
     def __init__(self, lamb, cant_num_alea, k, semilla_congru):
         self.k = k
@@ -56,13 +55,19 @@ class erlang:
             res_fdp.append(valorFinal)
         return res_fdp
    
-    def graficar(self, x, y):
+    def graficar(self, y):
         fig, ax = plt.subplots()
-
-        ax.plot(x, y, linewidth=2.0)
+        ax.plot(y, linewidth=2.0)
+        x = self.get_array()
         #ax.scatter(x, y, vmin=0, vmax=100)
-
         plt.show()
+    def graficar_fda(self):
+        y = self.get_array_fda()
+        self.graficar(y)
+    
+    def graficar_fdp(self):
+        y = self.get_array_fdp()
+        self.graficar(y)
 
 
 """

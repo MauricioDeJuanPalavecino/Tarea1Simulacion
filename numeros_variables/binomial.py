@@ -44,27 +44,30 @@ class binomial:
             res_fda.append(betainc(self.cant_num_alea - aleatoria, aleatoria +1, 1 - self.prob))
         return res_fda
 
-    def graficar(self, x, y):
+    def graficar(self, y):
+        x = self.get_array()
         # x= variables aleratoreas FDA
         # y= luego de aplicar funcion de probabilidad a este resultado
-
         fig, ax = plt.subplots()
-
         ax.plot(x, y, linewidth=2.0)
         ax.scatter(x, y, vmin=0, vmax=100)
         #ax.scatter(x, y)
-
         plt.show()
-
+    def graficar_fda(self):
+        y = self.get_array_fda()
+        self.graficar(y)
+    
+    def graficar_fdp(self):
+        y = self.get_array_fdp()
+        self.graficar(y)
 
 #permite maximo 171 numeros
-"""
-bi = binomial(0.5, 40, 20)
-var_alea = bi.get_array() #eje horizontal en grafico
 
-fda = bi.get_array_fda() #opcion de eje vertical en grafico
-fdp = bi.get_array_fdp() #opcion de eje vertical en grafico
+#bi = binomial(0.5, 40, 20).graficar_fda()
+#bi = binomial(0.5, 40, 20).graficar_fdp()
+#var_alea = bi.get_array() #eje horizontal en grafico
 
-bi.graficar(var_alea, fda)
-"""
+#fda = bi.get_array_fda() #opcion de eje vertical en grafico
+#fdp = bi.get_array_fdp() #opcion de eje vertical en grafico
 
+#bi.graficar(fdp)
