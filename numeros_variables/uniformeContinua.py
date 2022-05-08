@@ -1,8 +1,6 @@
-from this import d
 from unittest import result
 from numpy import var
 
-from pyrsistent import v
 from congruencial_mult import *
 import math
 import matplotlib.pyplot as plt
@@ -59,14 +57,20 @@ class uniformeContinua:
 
         return res_fdp
 
-    def graficar(self, x, y):
+    def graficar(self, y):
+        x = self.get_array()
         fig, ax = plt.subplots()
-
         ax.plot(x, y, linewidth=2.0)
         #ax.scatter(x, y, vmin=0, vmax=100)
-
         plt.show()
-
+    
+    def graficar_fda(self):
+        y = self.get_array_fda()
+        self.graficar(y)
+    
+    def graficar_fdp(self):
+        y = self.get_array_fdp()
+        self.graficar(y)
 
 
 """

@@ -52,18 +52,25 @@ class bernoulli:
             res_fda.append(valor)
         return res_fda
 
-    def graficar(self, x, y):
+    def graficar(self, y):
+        x = self.get_array()
         fig, ax = plt.subplots()
-
         ax.plot(x, y, linewidth=2.0)
         ax.scatter(x, y, vmin=0, vmax=100)
 
         plt.show()
 
-be = bernoulli(0.3, 1000, 19)
+    def graficar_fda(self):
+        y = self.get_array_fda()
+        self.graficar(y)
+    
+    def graficar_fdp(self):
+        y = self.get_array_fdp()
+        self.graficar(y)
+#be = bernoulli(0.3, 1000, 19)
 
 
-fdp = be.get_array_fdp()
-var_alea = be.get_array()
+#fdp = be.get_array_fdp()
+#var_alea = be.get_array()
 
-be.graficar(var_alea, fdp)
+#be.graficar(var_alea, fdp)

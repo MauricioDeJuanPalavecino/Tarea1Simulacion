@@ -6,6 +6,18 @@ from tkinter import messagebox
 from binomial import *
 from erlang import *
 from exponencial import *
+from normal_estandar import *
+from normal import *
+from uniformeContinua import *
+from chiCuadrado import *
+from tStudent import *
+from pareto import *
+from weibull import *
+from triangular import *
+from uniformeDiscreta import *
+from bernoulli import *
+from poisson import *
+from geometrica import *
 
 #Crear ventana
 root = tk.Tk()
@@ -65,7 +77,6 @@ def es_entero_positivo(i):
         return False
     except ValueError:
         return False
-
 #Verificar que los campos no están vacios
 def campo_vacio(campo, nombre):
     if campo == "":    
@@ -128,6 +139,126 @@ def tk_erlang():
     buttonFDA.config(command= lambda: run_erlang("FDA", lambda_entry, k_entry))
     buttonFDP.config(command= lambda: run_erlang("FDP", lambda_entry, k_entry))
 
+def tk_normal_estandar():
+    init_distframe()
+    media_label = init_label(dist_frame, 0, "Media:")
+    media_entry = init_entry(dist_frame, 0)
+    media_entry.insert(-1, 0)
+    media_entry.config(state='disabled')
+    var_label = init_label(dist_frame, 1, "Varianza:")
+    var_entry = init_entry(dist_frame, 1)
+    var_entry.insert(-1, 1)
+    var_entry.config(state='disabled')
+    buttonFDA = init_fda_button(dist_frame, 2)
+    buttonFDP = init_fdp_button(dist_frame, 2)
+    buttonFDA.config(command= lambda: run_normal_estandar("FDA"))
+    buttonFDP.config(command= lambda: run_normal_estandar("FDP"))
+    
+def tk_normal():
+    init_distframe()
+    media_label = init_label(dist_frame, 0, "Media:")
+    media_entry = init_entry(dist_frame, 0)
+    var_label = init_label(dist_frame, 1, "Varianza:")
+    var_entry = init_entry(dist_frame, 1)
+    buttonFDA = init_fda_button(dist_frame, 2)
+    buttonFDP = init_fdp_button(dist_frame, 2)
+    buttonFDA.config(command= lambda: run_normal("FDA", media_entry, var_entry))
+    buttonFDP.config(command= lambda: run_normal("FDP", media_entry, var_entry))
+
+def tk_continua():
+    init_distframe()
+    a_label = init_label(dist_frame, 0, "Valor mínimo:")
+    a_entry = init_entry(dist_frame, 0)
+    b_label = init_label(dist_frame, 1, "Valor máximo:")
+    b_entry = init_entry(dist_frame, 1)
+    buttonFDA = init_fda_button(dist_frame, 2)
+    buttonFDP = init_fdp_button(dist_frame, 2)
+    buttonFDA.config(command= lambda: run_continua("FDA", a_entry, b_entry))
+    buttonFDP.config(command= lambda: run_continua("FDP", a_entry, b_entry))
+
+def tk_chi():
+    init_distframe()
+    grados_label = init_label(dist_frame, 0, "Grados de libertad:")
+    grados_entry = init_entry(dist_frame, 0)
+    buttonFDA = init_fda_button(dist_frame, 2)
+    buttonFDP = init_fdp_button(dist_frame, 2)
+    buttonFDA.config(command= lambda: run_chi("FDA", grados_entry))
+    buttonFDP.config(command= lambda: run_chi("FDP", grados_entry))
+
+def tk_student():
+    init_distframe()
+    grados_label = init_label(dist_frame, 0, "Grados de libertad")
+    grados_entry = init_entry(dist_frame, 0)
+    buttonFDA = init_fda_button(dist_frame, 2)
+    buttonFDP = init_fdp_button(dist_frame, 2)
+    buttonFDA.config(command= lambda: run_student("FDA", grados_entry))
+    buttonFDP.config(command= lambda: run_student("FDP", grados_entry))
+
+def tk_pareto():
+    init_distframe()
+    a_label = init_label(dist_frame, 0, "Forma:")
+    a_entry = init_entry(dist_frame, 0)
+    b_label = init_label(dist_frame, 1, "Escala:")
+    b_entry = init_entry(dist_frame, 1)
+    buttonFDA = init_fda_button(dist_frame, 2)
+    buttonFDP = init_fdp_button(dist_frame, 2)
+    buttonFDA.config(command= lambda: run_pareto("FDA", a_entry, b_entry))
+    buttonFDP.config(command= lambda: run_pareto("FDP", a_entry, b_entry))
+
+def tk_weibull():
+    init_distframe()
+    a_label = init_label(dist_frame, 0, "Forma:")
+    a_entry = init_entry(dist_frame, 0)
+    b_label = init_label(dist_frame, 1, "Escala:")
+    b_entry = init_entry(dist_frame, 1)
+    buttonFDA = init_fda_button(dist_frame, 2)
+    buttonFDP = init_fdp_button(dist_frame, 2)
+    buttonFDA.config(command= lambda: run_weibull("FDA", a_entry, b_entry))
+    buttonFDP.config(command= lambda: run_weibull("FDP", a_entry, b_entry))
+
+def tk_triangular():
+    init_distframe()
+    a_label = init_label(dist_frame, 0, "Valor mínimo:")
+    a_entry = init_entry(dist_frame, 0)
+    b_label = init_label(dist_frame, 1, "Valor máximo:")
+    b_entry = init_entry(dist_frame, 1)
+    m_label = init_label(dist_frame, 2, "Moda:")
+    m_entry = init_entry(dist_frame, 2)
+    buttonFDA = init_fda_button(dist_frame, 3)
+    buttonFDP = init_fdp_button(dist_frame, 3)
+    buttonFDA.config(command= lambda: run_triangular("FDA", a_entry, b_entry, m_entry))
+    buttonFDP.config(command= lambda: run_triangular("FDP", a_entry, b_entry, m_entry))
+
+def tk_discreta():
+    init_distframe()
+    a_label = init_label(dist_frame, 0, "Valor mínimo:")
+    a_entry = init_entry(dist_frame, 0)
+    b_label = init_label(dist_frame, 1, "Valor máximo:")
+    b_entry = init_entry(dist_frame, 1)
+    buttonFDA = init_fda_button(dist_frame, 2)
+    buttonFDP = init_fdp_button(dist_frame, 2)
+    buttonFDA.config(command= lambda: run_discreta("FDA", a_entry, b_entry))
+    buttonFDP.config(command= lambda: run_discreta("FDP", a_entry, b_entry))
+    buttonFDA.config(state='disabled')
+
+def tk_bernoulli():
+    init_distframe()
+    prob_label = init_label(dist_frame, 0, "Probabilidad:")
+    prob_entry = init_entry(dist_frame, 0)
+    buttonFDA = init_fda_button(dist_frame, 1)
+    buttonFDP = init_fdp_button(dist_frame, 1)
+    buttonFDA.config(command= lambda: run_bernoulli("FDA", prob_entry))
+    buttonFDP.config(command= lambda: run_bernoulli("FDP", prob_entry))
+
+def tk_poisson():
+    init_distframe()
+    lambda_label = init_label(dist_frame, 0, "Lambda:")
+    lambda_entry = init_entry(dist_frame, 0)
+    buttonFDA = init_fda_button(dist_frame, 1)
+    buttonFDP = init_fdp_button(dist_frame, 1)
+    buttonFDA.config(command= lambda: run_poisson("FDA", lambda_entry))
+    buttonFDP.config(command= lambda: run_poisson("FDP", lambda_entry))
+
 def tk_binomial():
     init_distframe()
     prob_label = init_label(dist_frame, 0, "Probabilidad:")
@@ -136,6 +267,15 @@ def tk_binomial():
     buttonFDP = init_fdp_button(dist_frame, 1)
     buttonFDA.config(command= lambda: run_binomial("FDA", prob_entry))
     buttonFDP.config(command= lambda: run_binomial("FDP", prob_entry))
+
+def tk_geometrica():
+    init_distframe()
+    prob_label = init_label(dist_frame, 0, "Probabilidad:")
+    prob_entry = init_entry(dist_frame, 0)
+    buttonFDA = init_fda_button(dist_frame, 1)
+    buttonFDP = init_fdp_button(dist_frame, 1)
+    buttonFDA.config(command= lambda: run_geometrica("FDA", prob_entry))
+    buttonFDP.config(command= lambda: run_geometrica("FDP", prob_entry))
 
 #Graficar distribuciones
 def run_exp(FD, lambda_entry):
@@ -176,6 +316,209 @@ def run_erlang(FD, lambda_entry, k_entry):
     if FD == "FDP":
         erlang(int(float(lamb)), int(float(cant_alea)),int(float(k)), int(float(semilla_congru))).graficar_fdp()
 
+def run_normal_estandar(FD):
+    semilla_congru =  semilla_entry.get()
+    cant_alea =  cant_alea_entry.get()
+    if error_in_main(semilla_congru, cant_alea):
+        return
+    if FD == "FDA":
+        normal_estandar(int(float(cant_alea)), int(float(semilla_congru))).graficar_fda()
+    if FD == "FDP":
+        normal_estandar(int(float(cant_alea)), int(float(semilla_congru))).graficar_fdp()
+
+def run_normal(FD, media_entry, var_entry):
+    semilla_congru =  semilla_entry.get()
+    cant_alea =  cant_alea_entry.get()
+    media =  media_entry.get()
+    varianza =  var_entry.get()
+    if error_in_main(semilla_congru, cant_alea):
+        return
+    if campo_vacio(media, "Media"):   
+        return True
+    if campo_vacio(varianza, "Varianza"):   
+        return True
+    if not es_decimal_positivo(varianza):
+        messagebox.showinfo(message="El campo 'Varianza' debe ser un número real positivo", title="Valor incorrecto")
+        return
+    if FD == "FDA":
+        normal(float(media), float(varianza), int(float(cant_alea)), int(float(semilla_congru))).graficar_fda()
+    if FD == "FDP":
+        normal(float(media), float(varianza), int(float(cant_alea)), int(float(semilla_congru))).graficar_fdp()
+
+def run_continua(FD, a_entry, b_entry):
+    semilla_congru =  semilla_entry.get()
+    cant_alea =  cant_alea_entry.get()
+    a =  a_entry.get()
+    b =  b_entry.get()
+    if error_in_main(semilla_congru, cant_alea):
+        return
+    if campo_vacio(a, "Valor mínimo"):   
+        return True
+    if campo_vacio(b, "Valor máximo"):   
+        return True
+    if a >= b:
+        messagebox.showinfo(message="El campo 'Valor mínimo' debe ser menor que el campo 'Valor máximo'", title="Valor incorrecto")
+        return
+    if FD == "FDA":
+        uniformeContinua(float(a), float(b), int(float(cant_alea)), int(float(semilla_congru))).graficar_fda()
+    if FD == "FDP":
+        uniformeContinua(float(a), float(b), int(float(cant_alea)), int(float(semilla_congru))).graficar_fdp()
+
+def run_chi(FD, grados_entry):
+    semilla_congru =  semilla_entry.get()
+    cant_alea =  cant_alea_entry.get()
+    grados =  grados_entry.get()
+    if error_in_main(semilla_congru, cant_alea):
+        return
+    if campo_vacio(grados, "Grados de Libertad"):   
+        return True
+    if not es_entero_positivo(grados):
+        messagebox.showinfo(message="El campo 'Grados de Libertad' debe ser un número entero positivo", title="Valor incorrecto")
+        return
+    if FD == "FDA":
+        chiCuadrado(int(float(grados)), int(float(cant_alea)), int(float(semilla_congru))).graficar_fda()
+    if FD == "FDP":
+        chiCuadrado(int(float(grados)), int(float(cant_alea)), int(float(semilla_congru))).graficar_fdp()
+
+def run_student(FD, grados_entry):
+    semilla_congru =  semilla_entry.get()
+    cant_alea =  cant_alea_entry.get()
+    grados =  grados_entry.get()
+    if error_in_main(semilla_congru, cant_alea):
+        return
+    if campo_vacio(grados, "Grados de Libertad"):   
+        return True
+    if not es_entero_positivo(grados):
+        messagebox.showinfo(message="El campo 'Grados de Libertad' debe ser un número entero positivo", title="Valor incorrecto")
+        return
+    if FD == "FDA":
+        tstudent(int(float(grados)), int(float(cant_alea)), int(float(semilla_congru))).graficar_fda()
+    if FD == "FDP":
+        tstudent(int(float(grados)), int(float(cant_alea)), int(float(semilla_congru))).graficar_fdp()
+
+def run_pareto(FD, a_entry, b_entry):
+    semilla_congru =  semilla_entry.get()
+    cant_alea =  cant_alea_entry.get()
+    a =  a_entry.get()
+    b =  b_entry.get()
+    if error_in_main(semilla_congru, cant_alea):
+        return
+    if campo_vacio(a, "Forma"):   
+        return True
+    if campo_vacio(b, "Escala"):   
+        return True
+    if not es_decimal_positivo(a):
+        messagebox.showinfo(message="El campo 'Forma' debe ser un número real positivo", title="Valor incorrecto")
+        return
+    if not es_decimal_positivo(b):
+        messagebox.showinfo(message="El campo 'Escala' debe ser un número real positivo", title="Valor incorrecto")
+        return
+    if FD == "FDA":
+        pareto(float(a), float(b), int(float(cant_alea)), int(float(semilla_congru))).graficar_fda()
+    if FD == "FDP":
+        pareto(float(a), float(b), int(float(cant_alea)), int(float(semilla_congru))).graficar_fdp()
+
+def run_weibull(FD, a_entry, b_entry):
+    semilla_congru =  semilla_entry.get()
+    cant_alea =  cant_alea_entry.get()
+    a =  a_entry.get()
+    b =  b_entry.get()
+    if error_in_main(semilla_congru, cant_alea):
+        return
+    if campo_vacio(a, "Forma"):   
+        return True
+    if campo_vacio(b, "Escala"):   
+        return True
+    if not es_decimal_positivo(a):
+        messagebox.showinfo(message="El campo 'Forma' debe ser un número real positivo", title="Valor incorrecto")
+        return
+    if not es_decimal_positivo(b):
+        messagebox.showinfo(message="El campo 'Escala' debe ser un número real positivo", title="Valor incorrecto")
+        return
+    if FD == "FDA":
+        weibull(float(a), float(b), int(float(cant_alea)), int(float(semilla_congru))).graficar_fda()
+    if FD == "FDP":
+        weibull(float(a), float(b), int(float(cant_alea)), int(float(semilla_congru))).graficar_fdp()
+
+def run_triangular(FD, a_entry, b_entry, m_entry):
+    semilla_congru =  semilla_entry.get()
+    cant_alea =  cant_alea_entry.get()
+    a =  a_entry.get()
+    b =  b_entry.get()
+    m = m_entry.get()
+    if error_in_main(semilla_congru, cant_alea):
+        return
+    if campo_vacio(a, "Valor mínimo"):   
+        return True
+    if campo_vacio(b, "Valor máximo"):   
+        return True
+    if campo_vacio(m, "Moda"):   
+        return True
+    if a >= b:
+        messagebox.showinfo(message="El campo 'Valor mínimo' debe ser menor que el campo 'Valor máximo'", title="Valor incorrecto")
+        return
+    if m < a or m > b:
+        messagebox.showinfo(message="El campo 'Moda' debe ser mayor o igual que el campo 'Valor mínimo' y menor o igual al campo 'Valor máximo'", title="Valor incorrecto")
+        return
+    if FD == "FDA":
+        triangular(float(a), float(b), float(m), int(float(cant_alea)), int(float(semilla_congru))).graficar_fda()
+    if FD == "FDP":
+        triangular(float(a), float(b), float(m), int(float(cant_alea)), int(float(semilla_congru))).graficar_fdp()
+
+def run_discreta(FD, a_entry, b_entry):
+    semilla_congru =  semilla_entry.get()
+    cant_alea =  cant_alea_entry.get()
+    a =  a_entry.get()
+    b =  b_entry.get()
+    if error_in_main(semilla_congru, cant_alea):
+        return
+    if campo_vacio(a, "Valor mínimo"):   
+        return True
+    if campo_vacio(b, "Valor máximo"):   
+        return True
+    if not es_entero_positivo(a):
+        messagebox.showinfo(message="El campo 'Valor mínimo' debe ser un número entero positivo", title="Valor incorrecto")
+        return
+    if not es_entero_positivo(b):
+        messagebox.showinfo(message="El campo 'Valor máximo' debe ser un número entero positivo", title="Valor incorrecto")
+        return
+    if a >= b:
+        messagebox.showinfo(message="El campo 'Valor mínimo' debe ser menor que el campo 'Valor máximo'", title="Valor incorrecto")
+        return
+    uniformeDiscreta(float(a), float(b), int(float(cant_alea)), int(float(semilla_congru))).graficar_fdp()
+
+def run_bernoulli(FD, prob_entry):
+    semilla_congru =  semilla_entry.get()
+    cant_alea =  cant_alea_entry.get()
+    prob = prob_entry.get()
+    if error_in_main(semilla_congru, cant_alea):
+        return
+    if campo_vacio(prob, "Probabilidad"):   
+        return True
+    if (not es_decimal(prob)) or float(prob) < 0 or float(prob) > 1:    
+        messagebox.showinfo(message="El campo 'Probabilidad' debe ser un número entre 0 y 1", title="Valor incorrecto")
+        return
+    if FD == "FDA":
+        bernoulli(float(prob), int(float(cant_alea)), int(float(semilla_congru))).graficar_fda()
+    if FD == "FDP":
+        bernoulli(float(prob), int(float(cant_alea)), int(float(semilla_congru))).graficar_fdp()
+
+def run_poisson(FD, lambda_entry):
+    semilla_congru =  semilla_entry.get()
+    cant_alea =  cant_alea_entry.get()
+    lamb = lambda_entry.get()
+    if error_in_main(semilla_congru, cant_alea):
+        return
+    if campo_vacio(lamb, "Lambda"):   
+        return True
+    if not es_entero_positivo(lamb):    
+        messagebox.showinfo(message="El campo 'Lambda' debe ser un número entero positivo", title="Valor incorrecto")
+        return
+    if FD == "FDA":
+        poisson(int(float(lamb)), int(float(cant_alea)), int(float(semilla_congru))).graficar_fda()
+    if FD == "FDP":
+        poisson(int(float(lamb)), int(float(cant_alea)), int(float(semilla_congru))).graficar_fdp()
+
 def run_binomial(FD, prob_entry):
     semilla_congru =  semilla_entry.get()
     cant_alea =  cant_alea_entry.get()
@@ -192,6 +535,22 @@ def run_binomial(FD, prob_entry):
     if FD == "FDP":
         binomial(float(prob), int(float(cant_alea)), int(float(semilla_congru))).graficar_fdp()
 
+def run_geometrica(FD, prob_entry):
+    semilla_congru =  semilla_entry.get()
+    cant_alea =  cant_alea_entry.get()
+    prob = prob_entry.get()
+    if error_in_main(semilla_congru, cant_alea):
+        return
+    if campo_vacio(prob, "Probabilidad"):   
+        return True
+    if (not es_decimal(prob)) or float(prob) < 0 or float(prob) > 1:    
+        messagebox.showinfo(message="El campo 'Probabilidad' debe ser un número entre 0 y 1", title="Valor incorrecto")
+        return
+    if FD == "FDA":
+        geometrica(float(prob), int(float(cant_alea)), int(float(semilla_congru))).graficar_fda()
+    if FD == "FDP":
+        geometrica(float(prob), int(float(cant_alea)), int(float(semilla_congru))).graficar_fdp()
+
 # Selección de Distribución
 def dist_changed(event):
     distSelect = dist_seleccionada.get()
@@ -201,31 +560,31 @@ def dist_changed(event):
     elif distSelect == "Erlang":
         tk_erlang()
     elif distSelect == "Normal(0,1)":
-        tk_exp()
+        tk_normal_estandar()
     elif distSelect == "Normal":
-        tk_exp()
+        tk_normal()
     elif distSelect == "Uniforme continua":
-        tk_exp()
+        tk_continua()
     elif distSelect == "Chi-cuadrado":
-        tk_exp()
+        tk_chi()
     elif distSelect == "t-student":
-        tk_exp()
+        tk_student()
     elif distSelect == "Pareto":
-        tk_exp()
+        tk_pareto()
     elif distSelect == "Weibull":
-        tk_exp()
+        tk_weibull()
     elif distSelect == "Triangular":
-        tk_exp()
+        tk_triangular()
     elif distSelect == "Uniforme discreta":
-        tk_exp()
+        tk_discreta()
     elif distSelect == "Bernoulli":
-        tk_exp()
+        tk_bernoulli()
     elif distSelect == "Poisson":
-        tk_exp()
+        tk_poisson()
     elif distSelect == "Binomial":
         tk_binomial()
     elif distSelect == "Geométrica":
-        tk_exp()
+        tk_geometrica()
     else:
         messagebox.showinfo(message="Selección inválida", title="Error")
 

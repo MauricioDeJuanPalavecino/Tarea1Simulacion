@@ -74,18 +74,24 @@ class triangular:
                 res_fdp.append(fdpvalue)           
         return res_fdp
 
-    def graficar(self, x, y):
+    def graficar(self, y):
+        x = self.get_array()
         fig, ax = plt.subplots()
-
         ax.plot(x, y, linewidth=2.0)
         #ax.scatter(x, y, vmin=0, vmax=100)
-
         plt.show()
 
+    def graficar_fda(self):
+        y = self.get_array_fda()
+        self.graficar(y)
+    
+    def graficar_fdp(self):
+        y = self.get_array_fdp()
+        self.graficar(y)
 
-trlar = triangular(2, 10, 5,100, 19)
-var_alea = trlar.get_array() #eje horizontal en grafico
+#trlar = triangular(2, 10, 5,100, 19)
+#var_alea = trlar.get_array() #eje horizontal en grafico
 
-fda = trlar.get_array_fda() #opcion de eje vertical en grafico
-fdp = trlar.get_array_fdp() #opcion de eje vertical en grafico
-trlar.graficar(var_alea, fdp)
+#fda = trlar.get_array_fda() #opcion de eje vertical en grafico
+#fdp = trlar.get_array_fdp() #opcion de eje vertical en grafico
+#trlar.graficar(var_alea, fdp)

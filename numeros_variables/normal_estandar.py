@@ -50,14 +50,20 @@ class normal_estandar:
             res_fdp.append( (1 / (self.desv_tipica*math.sqrt(2*math.pi))) * math.exp(-(1/2) * ((aleatoria-self.media)/self.desv_tipica)**2) )
         return res_fdp
 
-    def graficar(self, x, y):
+    def graficar(self, y):
+        x = self.get_array()
         fig, ax = plt.subplots()
-
         ax.plot(x, y, linewidth=2.0)
         #ax.scatter(x, y, vmin=0, vmax=100)
-
         plt.show()
-
+    
+    def graficar_fda(self):
+        y = self.get_array_fda()
+        self.graficar(y)
+    
+    def graficar_fdp(self):
+        y = self.get_array_fdp()
+        self.graficar(y)
 
 """
 ex = normal_estandar(600, 19)

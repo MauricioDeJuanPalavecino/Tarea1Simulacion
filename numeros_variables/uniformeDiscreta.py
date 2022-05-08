@@ -36,19 +36,24 @@ class uniformeDiscreta:
             res_fdp.append(valor)
         return res_fdp
     
-    def graficar(self, x, y):
+    def graficar(self, y):
+        x = self.get_array()
         fig, ax = plt.subplots()
-
         ax.plot(x, y, linewidth=2.0)
         ax.scatter(x, y, vmin=0, vmax=100)
 
         plt.show()
+
+    def graficar_fdp(self):
+        y = self.get_array_fdp()
+        self.graficar(y)
+
 #z = congruencial_mult(19)
 
-ud = uniformeDiscreta(1, 5, 10000, 19)
+#ud = uniformeDiscreta(1, 5, 10000, 19)
 
 
-fdp = ud.get_array_fdp()
-var_alea = ud.get_array()
+#fdp = ud.get_array_fdp()
+#var_alea = ud.get_array()
 
-ud.graficar(var_alea, fdp)
+#ud.graficar(var_alea, fdp)

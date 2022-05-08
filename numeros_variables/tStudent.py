@@ -82,15 +82,22 @@ class tstudent:
                 res_fdp.append((1/math.sqrt(2*math.pi))*math.exp(-aleatoria**2/2))
         return res_fdp
 
-    def graficar(self, x, y):
+    def graficar(self, y):
+        x = self.get_array()
         fig, ax = plt.subplots()
-
         #ax.plot(x, y, linewidth=2.0)
         ax.scatter(x, y, vmin=0, vmax=100)
         #ax.scatter(x, y)
 
         plt.show()
 
+    def graficar_fda(self):
+        y = self.get_array_fda()
+        self.graficar(y)
+    
+    def graficar_fdp(self):
+        y = self.get_array_fdp()
+        self.graficar(y)
 
 """
 ts = tstudent(3, 10000, 19)

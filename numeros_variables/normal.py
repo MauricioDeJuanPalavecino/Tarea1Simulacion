@@ -4,9 +4,9 @@ import math
 import matplotlib.pyplot as plt
 
 class normal:
-    def __init__(self, media, desv_tipica, cant_num_alea, semilla_congru):
+    def __init__(self, media, varianza, cant_num_alea, semilla_congru):
         self.media = media
-        self.desv_tipica = desv_tipica
+        self.desv_tipica = math.sqrt(varianza)
         self.cant_num_alea = cant_num_alea
         self.congru = congruencial_mult(semilla_congru)
         self.arrayNumAleratorios = self.formular()
@@ -51,14 +51,20 @@ class normal:
             res_fdp.append( (1 / (self.desv_tipica*math.sqrt(2*math.pi))) * math.exp(-(1/2) * ((aleatoria-self.media)/self.desv_tipica)**2) )
         return res_fdp
 
-    def graficar(self, x, y):
+    def graficar(self, y):
+        x = self.get_array() 
         fig, ax = plt.subplots()
-
         ax.plot(x, y, linewidth=2.0)
         #ax.scatter(x, y, vmin=0, vmax=100)
-
         plt.show()
 
+    def graficar_fda(self):
+        y = self.get_array_fda()
+        self.graficar(y)
+    
+    def graficar_fdp(self):
+        y = self.get_array_fdp()
+        self.graficar(y)
 """    
 ex = normal(0, 1, 600, 19)
 var_alea = ex.get_array() #eje horizontal en grafico

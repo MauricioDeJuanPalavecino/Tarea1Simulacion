@@ -49,14 +49,20 @@ class chiCuadrado:
 			res_fdp.append((((1/2)**(self.grados_libertad/2))/math.gamma(self.grados_libertad/2))*((aleatoria)**((self.grados_libertad/2)-1))*math.exp(-aleatoria/2))
 		return res_fdp
 
-	def graficar(self, x, y):
+	def graficar(self, y):
+		x = self.get_array()
 		fig, ax = plt.subplots()
-
 		ax.plot(x, y, linewidth=1.0)
 		#ax.scatter(x, y, vmin=0, vmax=100)
-
 		plt.show()
-
+	
+	def graficar_fda(self):
+		y = self.get_array_fda()
+		self.graficar(y)
+	
+	def graficar_fdp(self):
+		y = self.get_array_fdp()
+		self.graficar(y)
 
 """
 cc = chiCuadrado(1, 1000, 19)

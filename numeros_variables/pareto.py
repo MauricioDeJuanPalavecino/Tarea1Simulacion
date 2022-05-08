@@ -48,13 +48,20 @@ class pareto:
                 res_fdp.append( (  (self.a * math.pow(self.b, self.a)) / (math.pow(aleatoria, (self.a + 1))) ) )
         return res_fdp
 
-    def graficar(self, x, y):
+    def graficar(self, y):
+        x = self.get_array() 
         fig, ax = plt.subplots()
-
         ax.plot(x, y, linewidth=2.0)
         #ax.scatter(x, y, vmin=0, vmax=100)
-
         plt.show()
+
+    def graficar_fda(self):
+        y = self.get_array_fda()
+        self.graficar(y)
+    
+    def graficar_fdp(self):
+        y = self.get_array_fdp()
+        self.graficar(y)
 
 """
 pa = pareto(2, 10, 100, 19)

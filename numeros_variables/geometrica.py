@@ -25,7 +25,7 @@ class geometrica:
     def formular(self):
         arrayNumAleratorios = []
         for i in range(0,self.cant_num_alea):
-            value = cm.generar()
+            value = self.congru.generar()
             var_alea = int(math.log(value,math.e)/math.log(1-self.prob,math.e))
             arrayNumAleratorios.append(var_alea)
         arrayNumAleratorios.sort()
@@ -45,14 +45,20 @@ class geometrica:
             res_fdp.append(valor)
         return res_fdp
 
-    def graficar(self, x, y):
+    def graficar(self, y):
+        x = self.get_array()
         fig, ax = plt.subplots()
-
         ax.plot(x, y, linewidth=2.0)
         #ax.scatter(x, y, vmin=0, vmax=100)
-
         plt.show()
+
+    def graficar_fda(self):
+        y = self.get_array_fda()
+        self.graficar(y)
     
+    def graficar_fdp(self):
+        y = self.get_array_fdp()
+        self.graficar(y)
 """
 g = geometrica(0.32, 1000, 19)
 
