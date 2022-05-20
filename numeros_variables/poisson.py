@@ -9,17 +9,11 @@ class poisson:
         self.lamb = lamb
         self.congru = congruencial_mult(semilla_congru)
         self.arrayNumAleratorios = self.formular()
-        self.res_fda = self.funcion_distribucion_acumulada()
-        self.res_fdp = self.funcion_densidad_probabilidad()
-
+      
     def get_array(self):
         return self.arrayNumAleratorios
     
-    def get_array_fda(self):
-        return self.res_fda
-    
-    def get_array_fdp(self):
-        return self.res_fdp
+
 
     def formular(self):
         arrayNumAleratorios = []
@@ -33,40 +27,14 @@ class poisson:
             else: break
             variables+=1
         return arrayNumAleratorios
-    def funcion_densidad_probabilidad(self):
-        res_fdp = []
-        for aleatoria in self.arrayNumAleratorios:
-            valor = (math.exp(-self.lamb)*(self.lamb**aleatoria))/math.factorial(aleatoria)
-            res_fdp.append(valor)
-        return res_fdp
-
-    def funcion_distribucion_acumulada(self):
-        res_fda =[]
-        valoresSum = 0
-        for aleatoria in self.arrayNumAleratorios:
-            for i in range(0, math.floor(aleatoria)):
-                valoresSum = valoresSum + (self.lamb**i/math.factorial(i))
-            valorFinal = math.exp(-self.lamb)*valoresSum
-            res_fda.append(valorFinal)
-            valoresSum = 0
-        return res_fda
-
-    def graficar(self, y):
-        x = self.get_array()
-        fig, ax = plt.subplots()
-        ax.plot(x, y, linewidth=2.0)
-        ax.scatter(x, y, vmin=0, vmax=100)
-        #ax.scatter(x, y)
-
-        plt.show()
-
-    def graficar_fda(self):
-        y = self.get_array_fda()
-        self.graficar(y)
     
-    def graficar_fdp(self):
-        y = self.get_array_fdp()
-        self.graficar(y)
+    def muestreo(self):
+       print("Estas son las variables de la distribucion poisson")
+       contador = 1
+       for i in self.arrayNumAleratorios:
+           print("Esta es la variable x"+str(contador)+":  "+str(i))
+           contador+=1
+
 """
 
 #permite maximo 171 numeros

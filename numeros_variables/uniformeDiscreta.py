@@ -10,15 +10,11 @@ class uniformeDiscreta:
         self.cant_num_alea = cant_num_alea
         self.congru = congruencial_mult(semilla_congru)
         self.arrayNumAleratorios = self.formular()
-        self.res_fdp = self.funcion_probabilidad()
       
     #GETTERS
     def get_array(self):
         return self.arrayNumAleratorios
     
-    def get_array_fdp(self):
-        return self.res_fdp
-
     def formular(self):
         arrayNumAleratorios = []
         for i in range(0, self.cant_num_alea):
@@ -29,24 +25,12 @@ class uniformeDiscreta:
         arrayNumAleratorios.sort()
         return arrayNumAleratorios
     
-    def funcion_probabilidad(self):
-        res_fdp = []
-        for aleatoria in self.arrayNumAleratorios: 
-            valor = 1/ len(self.arrayNumAleratorios)
-            res_fdp.append(valor)
-        return res_fdp
-    
-    def graficar(self, y):
-        x = self.get_array()
-        fig, ax = plt.subplots()
-        ax.plot(x, y, linewidth=2.0)
-        ax.scatter(x, y, vmin=0, vmax=100)
-
-        plt.show()
-
-    def graficar_fdp(self):
-        y = self.get_array_fdp()
-        self.graficar(y)
+    def muestreo(self):
+        print("Estas son las variables de la distribucion uniforme discreta")
+        contador = 1
+        for i in self.arrayNumAleratorios:
+            print("Esta es la variable x"+str(contador)+":  "+str(i))
+            contador+=1
 
 #z = congruencial_mult(19)
 

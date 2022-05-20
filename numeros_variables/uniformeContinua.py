@@ -13,18 +13,11 @@ class uniformeContinua:
         self.b = b
         self.congru = congruencial_mult(semilla_congru)
         self.arrayNumAleratorios = self.formular()
-        self.res_fda = self.funcion_distribucion_acumulada()
-        self.res_fdp = self.funcion_densidad_probabilidad()
-
+       
     #GETTERS
     def get_array(self):
         return self.arrayNumAleratorios
 
-    def get_array_fda(self):
-        return self.res_fda
-    
-    def get_array_fdp(self):
-        return self.res_fdp
 
     #CALCULOS CON FUNCIONES
     def formular(self):
@@ -36,42 +29,12 @@ class uniformeContinua:
         arrayNumAleratorios.sort()
         return arrayNumAleratorios
     
-    def funcion_distribucion_acumulada(self):
-        res_fda = []
-        for aleatoria in self.arrayNumAleratorios:
-            if aleatoria <= self.a:
-                res_fda.append(0)
-            elif( (self.a < aleatoria) and (aleatoria <= self.b)):
-                res_fda.append( ((aleatoria - self.a ) / (self.b - self.a)) )
-            elif aleatoria > self.b:
-                res_fda.append(1)
-        return res_fda
-
-    def funcion_densidad_probabilidad(self):
-        res_fdp = []
-        for aleatoria in self.arrayNumAleratorios:
-            if( (self.a<= aleatoria) and (aleatoria < self.b) ):
-                res_fdp.append( (1/(self.b - self.a)) )
-            else:
-                res_fdp.append(0)
-
-        return res_fdp
-
-    def graficar(self, y):
-        x = self.get_array()
-        fig, ax = plt.subplots()
-        ax.plot(x, y, linewidth=2.0)
-        #ax.scatter(x, y, vmin=0, vmax=100)
-        plt.show()
-    
-    def graficar_fda(self):
-        y = self.get_array_fda()
-        self.graficar(y)
-    
-    def graficar_fdp(self):
-        y = self.get_array_fdp()
-        self.graficar(y)
-
+    def muestreo(self):
+        print("Estas son las variables de la distribucion uniforme continua")
+        contador = 1
+        for i in self.arrayNumAleratorios:
+            print("Esta es la variable x"+str(contador)+":  "+str(i))
+            contador+=1
 
 """
 uc = uniformeContinua(2, 4, 100, 19)

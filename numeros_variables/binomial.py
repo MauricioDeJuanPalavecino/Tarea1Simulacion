@@ -10,18 +10,10 @@ class binomial:
         self.prob = prob
         self.congru = congruencial_mult(semilla_congru)
         self.arrayNumAleratorios = self.formular()
-        self.res_fda = self.funcion_distribucion_acumulada()
-        self.res_fdp = self.funcion_masa_probabilidad()
 
     def get_array(self):
         return self.arrayNumAleratorios
     
-    def get_array_fda(self):
-        return self.res_fda
-    
-    def get_array_fdp(self):
-        return self.res_fdp
-
     def formular(self):
         arrayNumAleratorios = []
         for i in range(0,self.cant_num_alea):
@@ -30,38 +22,14 @@ class binomial:
             arrayNumAleratorios.append(valor)
         arrayNumAleratorios.sort()
         return arrayNumAleratorios
-    def funcion_masa_probabilidad(self):
-        res_fdp = []
-        for aleatoria in self.arrayNumAleratorios:
-            valor_nk = math.factorial(self.cant_num_alea)/(math.factorial(aleatoria)*math.factorial(self.cant_num_alea - aleatoria))
-            valor = valor_nk*(self.prob**aleatoria)*((1-self.prob)**(self.cant_num_alea-aleatoria))
-            res_fdp.append(valor)
-        return res_fdp
+  
+    def muestreo(self):
+        print("Estas son las variables de la distribucion binomial")
+        contador = 1
+        for i in self.arrayNumAleratorios:
+            print("Esta es la variable x"+str(contador)+":  "+str(i))
+            contador+=1
 
-    def funcion_distribucion_acumulada(self):
-        res_fda =[]
-        for aleatoria in self.arrayNumAleratorios:
-            res_fda.append(betainc(self.cant_num_alea - aleatoria, aleatoria +1, 1 - self.prob))
-        return res_fda
-
-    def graficar(self, y):
-        x = self.get_array()
-        # x= variables aleratoreas FDA
-        # y= luego de aplicar funcion de probabilidad a este resultado
-        fig, ax = plt.subplots()
-        ax.plot(x, y, linewidth=2.0)
-        ax.scatter(x, y, vmin=0, vmax=100)
-        #ax.scatter(x, y)
-        plt.show()
-    def graficar_fda(self):
-        y = self.get_array_fda()
-        self.graficar(y)
-    
-    def graficar_fdp(self):
-        y = self.get_array_fdp()
-        self.graficar(y)
-
-#permite maximo 171 numeros
 
 #bi = binomial(0.5, 40, 20).graficar_fda()
 #bi = binomial(0.5, 40, 20).graficar_fdp()

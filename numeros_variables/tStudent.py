@@ -9,23 +9,16 @@ class tstudent:
         self.grados_libertad = grados_libertad
         self.congru = congruencial_mult(semilla_congru)
         self.arrayNumAleratorios = self.formular()
-        self.res_fda = self.funcion_distribucion_acumulada()
-        self.res_fdp = self.funcion_densidad_probabilidad()
+       
     #GETTERS
     def get_array(self):
         return self.arrayNumAleratorios
-    
-    def get_array_fda(self):
-        return self.res_fda
-    
-    def get_array_fdp(self):
-        return self.res_fdp
 
     #Generar variables aleatorias
     def formular(self):
         arrayNumAleratorios = []
         valoresChi = 1
-        for i in range(0, self.cant_num_alea):
+        for i in range(0, int(self.cant_num_alea/2)):
             value1 = self.congru.generar()
             value2 = self.congru.generar()
             z1= math.sqrt(-2*math.log(value1,math.e))*math.cos(2*math.pi*value2)
@@ -53,51 +46,12 @@ class tstudent:
             valoresChi = 1
         return arrayNumAleratorios
 
-    def funcion_distribucion_acumulada(self):
-        res_fda = []
-        for aleatoria in self.arrayNumAleratorios:
-            if(self.grados_libertad==1):
-                res_fda.append(1/2 + (1/math.pi)*math.atan(aleatoria))
-            elif(self.grados_libertad==2):
-                res_fda.append(1/2 + (aleatoria/(2*math.sqrt(2)*math.sqrt(1+(aleatoria**2)/2))))
-            elif(self.grados_libertad==3):
-                valorcorchetes = (aleatoria/(math.sqrt(3)*(1+(aleatoria**2)/3))+ math.atan(aleatoria/math.sqrt(3)))
-                res_fda.append(1/2 + (1/math.pi)*valorcorchetes)
-            else:
-                res_fda.append((1/2)*(1+math.erf(aleatoria/math.sqrt(2))))
-        return res_fda
-
-    def funcion_densidad_probabilidad(self):
-        res_fdp = []
-        for aleatoria in self.arrayNumAleratorios:
-            if(self.grados_libertad==1):
-                res_fdp.append(1/(math.pi*(1+aleatoria**2)))
-            elif(self.grados_libertad==2):
-                valorparentesis = 1+ (aleatoria**2)/2
-                res_fdp.append(1/(2*math.sqrt(2)*(valorparentesis**3/2)))
-            elif(self.grados_libertad==3):
-                valorparentesis = (1+ (aleatoria**2)/3)**2
-                res_fdp.append(2/(math.pi*math.sqrt(3)*valorparentesis))
-            else:
-                res_fdp.append((1/math.sqrt(2*math.pi))*math.exp(-aleatoria**2/2))
-        return res_fdp
-
-    def graficar(self, y):
-        x = self.get_array()
-        fig, ax = plt.subplots()
-        #ax.plot(x, y, linewidth=2.0)
-        ax.scatter(x, y, vmin=0, vmax=100)
-        #ax.scatter(x, y)
-
-        plt.show()
-
-    def graficar_fda(self):
-        y = self.get_array_fda()
-        self.graficar(y)
-    
-    def graficar_fdp(self):
-        y = self.get_array_fdp()
-        self.graficar(y)
+    def muestreo(self):
+        print("Estas son las variables de la distribucion T de Student")
+        contador = 1
+        for i in self.arrayNumAleratorios:
+            print("Esta es la variable x"+str(contador)+":  "+str(i))
+            contador+=1
 
 """
 ts = tstudent(3, 10000, 19)
