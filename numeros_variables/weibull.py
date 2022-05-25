@@ -4,11 +4,12 @@ import math
 import matplotlib.pyplot as plt
 
 class weibull:
-    def __init__(self, alpha, beta, cant_num_alea, semilla_congru):
+    def __init__(self, alpha, beta, cant_num_alea, semilla_congru1, semilla_congru2):
         self.alpha = alpha
         self.beta = beta
         self.cant_num_alea = cant_num_alea
-        self.congru = congruencial_mult(semilla_congru)
+        self.congru1 = congruencial_mult(semilla_congru1)
+        self.congru2 = congruencial_mult(semilla_congru2)
         self.arrayNumAleratorios = self.formular()
        
     #GETTERS
@@ -21,8 +22,8 @@ class weibull:
         z1 = 0
         z2 = 0 
         for i in range(0, self.cant_num_alea):
-            value1 = self.congru.generar()
-            value2 = self.congru.generar()
+            value1 = self.congru1.generar()
+            value2 = self.congru2.generar()
             z1 = math.sqrt(-2*math.log(value1,math.e))*math.cos(2*math.pi*value2)
             z2 = math.sqrt(-2*math.log(value1,math.e))*math.sin(2*math.pi*value2)
             if(z1 >= 0):
