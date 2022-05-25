@@ -29,8 +29,6 @@ class weibull:
                 arrayNumAleratorios.append(z1)
             if(z2 >= 0):
                 arrayNumAleratorios.append(z2)
-
-        arrayNumAleratorios.sort()
         return arrayNumAleratorios
 
     def muestreo(self):

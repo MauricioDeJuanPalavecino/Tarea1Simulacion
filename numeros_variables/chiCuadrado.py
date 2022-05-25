@@ -4,10 +4,11 @@ from scipy.special import gammainc
 import math
 
 class chiCuadrado:
-	def __init__(self, grados_libertad, cant_num_alea, semilla_congru):
+	def __init__(self, grados_libertad, cant_num_alea, semilla_congru1, semilla_congru2):
 		self.cant_num_alea = cant_num_alea
 		self.grados_libertad = grados_libertad
-		self.congru = congruencial_mult(semilla_congru)
+		self.congru1 = congruencial_mult(semilla_congru1)
+		self.congru2 = congruencial_mult(semilla_congru2)
 		self.arrayNumAleratorios = self.formular()
 		
     #Getters
@@ -21,8 +22,8 @@ class chiCuadrado:
 		z2 = 0
 		for i in range(0, int(self.cant_num_alea/2)):
     		#Generar numeros aleatorios
-			value1 = self.congru.generar()
-			value2 = self.congru.generar()
+			value1 = self.congru1.generar()
+			value2 = self.congru2.generar()
 			
 			z1 = math.sqrt(-2*math.log(value1,math.e))*math.cos(2*math.pi*value2)
 			z2 = math.sqrt(-2*math.log(value1,math.e))*math.sin(2*math.pi*value2)
@@ -31,7 +32,6 @@ class chiCuadrado:
 				arrayNumAleratorios.append(z1)
 			if(z2 >= 0):
 				arrayNumAleratorios.append(z2)
-		arrayNumAleratorios.sort()
 		return arrayNumAleratorios
 	
 	def muestreo(self):

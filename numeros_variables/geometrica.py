@@ -21,7 +21,6 @@ class geometrica:
             value = self.congru.generar()
             var_alea = int(math.log(value,math.e)/math.log(1-self.prob,math.e))
             arrayNumAleratorios.append(var_alea)
-        arrayNumAleratorios.sort()
         return arrayNumAleratorios
     
     def muestreo(self):

@@ -23,7 +23,6 @@ class pareto:
             value = self.congru.generar()
             x = ( self.b / (math.pow(1 - value, (1 / self.a)) ) )
             arrayNumAleratorios.append(x)
-        arrayNumAleratorios.sort()
         return arrayNumAleratorios
 
     def muestreo(self):

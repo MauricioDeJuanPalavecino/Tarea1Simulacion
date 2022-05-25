@@ -22,7 +22,6 @@ class exponencial:
             value = self.congru.generar()
             x = -( (1 / self.lamb) * math.log(value, math.e))
             arrayNumAleratorios.append(x)
-            arrayNumAleratorios.sort()
         return arrayNumAleratorios
     
     def muestreo(self):

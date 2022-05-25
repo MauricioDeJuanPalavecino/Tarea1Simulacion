@@ -23,7 +23,6 @@ class bernoulli:
             else:
                 x= 0
             arrayNumAleratorios.append(x)
-        arrayNumAleratorios.sort()
         return arrayNumAleratorios
     
     def muestreo(self):

@@ -22,7 +22,6 @@ class uniformeDiscreta:
             x = int(self.cant_num_alea*value) + 1
             if(x >= self.a and x<= self.b):
                 arrayNumAleratorios.append(x)
-        arrayNumAleratorios.sort()
         return arrayNumAleratorios
     
     def muestreo(self):

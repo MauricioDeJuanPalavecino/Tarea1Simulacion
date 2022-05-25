@@ -4,10 +4,12 @@ from scipy.special import gammainc
 import math
 
 class tstudent:
-    def __init__(self, grados_libertad, cant_num_alea, semilla_congru):
+    def __init__(self, grados_libertad, cant_num_alea, semilla_congru1, semilla_congru2, semilla_congru3):
         self.cant_num_alea = cant_num_alea
         self.grados_libertad = grados_libertad
-        self.congru = congruencial_mult(semilla_congru)
+        self.congru1 = congruencial_mult(semilla_congru1)
+        self.congru2 = congruencial_mult(semilla_congru2)
+        self.congru3 = congruencial_mult(semilla_congru3)
         self.arrayNumAleratorios = self.formular()
        
     #GETTERS
@@ -19,17 +21,17 @@ class tstudent:
         arrayNumAleratorios = []
         valoresChi = 1
         for i in range(0, int(self.cant_num_alea/2)):
-            value1 = self.congru.generar()
-            value2 = self.congru.generar()
+            value1 = self.congru1.generar()
+            value2 = self.congru2.generar()
             z1= math.sqrt(-2*math.log(value1,math.e))*math.cos(2*math.pi*value2)
             z2= math.sqrt(-2*math.log(value1,math.e))*math.sin(2*math.pi*value2)
             if(self.grados_libertad==1):
                 for h in range(0, self.grados_libertad):
-                    valorChi = self.congru.generar()
+                    valorChi = self.congru3.generar()
                     valoresChi = valoresChi*valorChi
             else: 
                 for h in range(0, round(self.grados_libertad/2)):
-                    valorChi = self.congru.generar()
+                    valorChi = self.congru3.generar()
                     valoresChi = valoresChi*valorChi
             if(self.grados_libertad%2==0):
                 aleatorioChi = -2*math.log(valoresChi,math.e)

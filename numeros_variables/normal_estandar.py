@@ -4,11 +4,12 @@ import math
 import matplotlib.pyplot as plt
 
 class normal_estandar:
-    def __init__(self, cant_num_alea, semilla_congru):
+    def __init__(self, cant_num_alea, semilla_congru1, semilla_congru2):
         self.media = 0
         self.desv_tipica = 1
         self.cant_num_alea = cant_num_alea
-        self.congru = congruencial_mult(semilla_congru)
+        self.congru1 = congruencial_mult(semilla_congru1)
+        self.congru2 = congruencial_mult(semilla_congru2)
         self.arrayNumAleratorios = self.formular()
         
 
@@ -22,13 +23,12 @@ class normal_estandar:
         z1 = 0
         z2 = 0
         for i in range(0, int(self.cant_num_alea/2)):
-            value1 = self.congru.generar()
-            value2 = self.congru.generar()
+            value1 = self.congru1.generar()
+            value2 = self.congru2.generar()
             z1 = math.sqrt(-2 * math.log(value1,math.e)) * math.cos(2 * math.pi * value2)
             z2 = math.sqrt(-2 * math.log(value1,math.e)) * math.sin(2 * math.pi * value2)
             arrayNumAleratorios.append(z1)
             arrayNumAleratorios.append(z2)
-        arrayNumAleratorios.sort()
         return arrayNumAleratorios
     
    

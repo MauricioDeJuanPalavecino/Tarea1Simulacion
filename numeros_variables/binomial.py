@@ -20,7 +20,6 @@ class binomial:
             value = self.congru.generar()
             valor = int((self.prob*self.cant_num_alea-value+value*self.prob)/(value-value*self.prob+self.prob))
             arrayNumAleratorios.append(valor)
-        arrayNumAleratorios.sort()
         return arrayNumAleratorios
   
     def muestreo(self):

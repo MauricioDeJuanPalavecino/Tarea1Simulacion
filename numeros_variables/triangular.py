@@ -30,7 +30,6 @@ class triangular:
             else:    
                 x = self.b - ( math.sqrt((1-value)*(self.b - self.a)*(self.b - self.c)))
                 arrayNumAleratorios.append(x)
-        arrayNumAleratorios.sort()
         return arrayNumAleratorios
 
     

@@ -26,7 +26,6 @@ class uniformeContinua:
             value = self.congru.generar()
             x = ( self.a + ( self.b - self.a )*value )
             arrayNumAleratorios.append(x)
-        arrayNumAleratorios.sort()
         return arrayNumAleratorios
     
     def muestreo(self):
