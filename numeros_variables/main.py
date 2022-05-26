@@ -119,166 +119,242 @@ def init_distframe():
 #Frames para las distribuciones
 def tk_exp():
     init_distframe()
-    lambda_label = init_label(dist_frame, 0, "Lambda:")
-    lambda_entry = init_entry(dist_frame, 0)
+    semilla_label = init_label(dist_frame, 0, "Semilla Congruencial Multiplicativo:")
+    semilla_entry = init_entry(dist_frame, 0)
 
+    lambda_label = init_label(dist_frame, 1, "Lambda:")
+    lambda_entry = init_entry(dist_frame, 1)
     #Muestreo
-    buttonM = init_muestrear_button(dist_frame, 1)
-    buttonM.config(command= lambda: run_exp(lambda_entry))
+    buttonM = init_muestrear_button(dist_frame, 2)
+    buttonM.config(command= lambda: run_exp(semilla_entry, lambda_entry))
 
 def tk_erlang():
     init_distframe()
-    lambda_label = init_label(dist_frame, 0, "Lambda:")
-    lambda_entry = init_entry(dist_frame, 0)
-    k_label = init_label(dist_frame, 1, "K:")
-    k_entry = init_entry(dist_frame, 1)
+
+    semillas_label = init_label(dist_frame, 0, "Semillas Con. Mul. (Separadas por ';'):")
+    semillas_entry = init_entry(dist_frame, 0)
+
+    lambda_label = init_label(dist_frame, 1, "Lambda:")
+    lambda_entry = init_entry(dist_frame, 1)
+    k_label = init_label(dist_frame, 2, "K:")
+    k_entry = init_entry(dist_frame, 2)
 
     #Muestreo
-    buttonM = init_muestrear_button(dist_frame, 2)
-    buttonM.config(command= lambda: run_erlang(lambda_entry, k_entry))
+    buttonM = init_muestrear_button(dist_frame, 3)
+    buttonM.config(command= lambda: run_erlang(semillas_entry, lambda_entry, k_entry))
 
 def tk_normal_estandar():
     init_distframe()
-    media_label = init_label(dist_frame, 0, "Media:")
-    media_entry = init_entry(dist_frame, 0)
+
+    semilla1_label = init_label(dist_frame, 0, "Semilla Con. Mul. 1:")
+    semilla1_entry = init_entry(dist_frame, 0)
+
+    semilla2_label = init_label(dist_frame, 1, "Semilla Con. Mul. 2:")
+    semilla2_entry = init_entry(dist_frame, 1)
+
+    media_label = init_label(dist_frame, 2, "Media:")
+    media_entry = init_entry(dist_frame, 2)
     media_entry.insert(-1, 0)
     media_entry.config(state='disabled')
-    var_label = init_label(dist_frame, 1, "Varianza:")
-    var_entry = init_entry(dist_frame, 1)
+    var_label = init_label(dist_frame, 3, "Varianza:")
+    var_entry = init_entry(dist_frame, 3)
     var_entry.insert(-1, 1)
     var_entry.config(state='disabled')
 
     #Muestreo
-    buttonM = init_muestrear_button(dist_frame, 2)
-    buttonM.config(command= lambda: run_normal_estandar())
+    buttonM = init_muestrear_button(dist_frame, 4)
+    buttonM.config(command= lambda: run_normal_estandar(semilla1_entry, semilla2_entry))
     
 def tk_normal():
     init_distframe()
-    media_label = init_label(dist_frame, 0, "Media:")
-    media_entry = init_entry(dist_frame, 0)
-    var_label = init_label(dist_frame, 1, "Varianza:")
-    var_entry = init_entry(dist_frame, 1)
+
+    semilla1_label = init_label(dist_frame, 0, "Semilla Con. Mul. 1:")
+    semilla1_entry = init_entry(dist_frame, 0)
+
+    semilla2_label = init_label(dist_frame, 1, "Semilla Con. Mul. 2:")
+    semilla2_entry = init_entry(dist_frame, 1)
+
+    media_label = init_label(dist_frame, 2, "Media:")
+    media_entry = init_entry(dist_frame, 2)
+    var_label = init_label(dist_frame, 3, "Varianza:")
+    var_entry = init_entry(dist_frame, 3)
 
     #Muestreo
-    buttonM = init_muestrear_button(dist_frame, 2)
-    buttonM.config(command= lambda: run_normal(media_entry, var_entry))
+    buttonM = init_muestrear_button(dist_frame, 4)
+    buttonM.config(command= lambda: run_normal(media_entry, var_entry, semilla1_entry, semilla2_entry))
 
 
 def tk_continua():
     init_distframe()
-    a_label = init_label(dist_frame, 0, "Valor mínimo:")
-    a_entry = init_entry(dist_frame, 0)
-    b_label = init_label(dist_frame, 1, "Valor máximo:")
-    b_entry = init_entry(dist_frame, 1)
+
+    semilla_label = init_label(dist_frame, 0, "Semilla Congruencial Multiplicativo:")
+    semilla_entry = init_entry(dist_frame, 0)
+
+    a_label = init_label(dist_frame, 1, "Valor mínimo:")
+    a_entry = init_entry(dist_frame, 1)
+    b_label = init_label(dist_frame, 2, "Valor máximo:")
+    b_entry = init_entry(dist_frame, 2)
     
     #Muestreo
-    buttonM = init_muestrear_button(dist_frame, 2)
-    buttonM.config(command= lambda: run_continua(a_entry, b_entry))
+    buttonM = init_muestrear_button(dist_frame, 3)
+    buttonM.config(command= lambda: run_continua(a_entry, b_entry, semilla_entry))
 
 def tk_chi():
     init_distframe()
-    grados_label = init_label(dist_frame, 0, "Grados de libertad:")
-    grados_entry = init_entry(dist_frame, 0)
+
+    semilla1_label = init_label(dist_frame, 0, "Semilla Con. Mul. 1:")
+    semilla1_entry = init_entry(dist_frame, 0)
+
+    semilla2_label = init_label(dist_frame, 1, "Semilla Con. Mul. 2:")
+    semilla2_entry = init_entry(dist_frame, 1)
+
+    grados_label = init_label(dist_frame, 2, "Grados de libertad:")
+    grados_entry = init_entry(dist_frame, 2)
 
     #Muestreo
-    buttonM = init_muestrear_button(dist_frame, 1)
-    buttonM.config(command= lambda: run_chi(grados_entry))
+    buttonM = init_muestrear_button(dist_frame, 3)
+    buttonM.config(command= lambda: run_chi(grados_entry, semilla1_entry, semilla2_entry))
 
 
 def tk_student():
     init_distframe()
-    grados_label = init_label(dist_frame, 0, "Grados de libertad")
-    grados_entry = init_entry(dist_frame, 0)
+
+    semilla1_label = init_label(dist_frame, 0, "Semilla Con. Mul. 1:")
+    semilla1_entry = init_entry(dist_frame, 0)
+
+    semilla2_label = init_label(dist_frame, 1, "Semilla Con. Mul. 2:")
+    semilla2_entry = init_entry(dist_frame, 1)
+
+    semilla3_label = init_label(dist_frame, 2, "Semilla Con. Mul. 3:")
+    semilla3_entry = init_entry(dist_frame, 2)
+
+    grados_label = init_label(dist_frame, 3, "Grados de libertad")
+    grados_entry = init_entry(dist_frame, 3)
 
     #Muestreo
-    buttonM = init_muestrear_button(dist_frame, 1)
-    buttonM.config(command= lambda: run_student(grados_entry))
+    buttonM = init_muestrear_button(dist_frame, 4)
+    buttonM.config(command= lambda: run_student(grados_entry, semilla1_entry, semilla2_entry, semilla3_entry))
 
 
 def tk_pareto():
     init_distframe()
-    a_label = init_label(dist_frame, 0, "Forma:")
-    a_entry = init_entry(dist_frame, 0)
-    b_label = init_label(dist_frame, 1, "Escala:")
-    b_entry = init_entry(dist_frame, 1)
 
-    #Muestreo
-    buttonM = init_muestrear_button(dist_frame, 2)
-    buttonM.config(command= lambda: run_pareto(a_entry, b_entry))
+    semilla_label = init_label(dist_frame, 0, "Semilla Congruencial Multiplicativo:")
+    semilla_entry = init_entry(dist_frame, 0)
 
-def tk_weibull():
-    init_distframe()
-    a_label = init_label(dist_frame, 0, "Forma:")
-    a_entry = init_entry(dist_frame, 0)
-    b_label = init_label(dist_frame, 1, "Escala:")
-    b_entry = init_entry(dist_frame, 1)
-
-    #Muestreo
-    buttonM = init_muestrear_button(dist_frame, 2)
-    buttonM.config(command= lambda: run_weibull(a_entry, b_entry))
-
-def tk_triangular():
-    init_distframe()
-    a_label = init_label(dist_frame, 0, "Valor mínimo:")
-    a_entry = init_entry(dist_frame, 0)
-    b_label = init_label(dist_frame, 1, "Valor máximo:")
-    b_entry = init_entry(dist_frame, 1)
-    m_label = init_label(dist_frame, 2, "Moda:")
-    m_entry = init_entry(dist_frame, 2)
+    a_label = init_label(dist_frame, 1, "Forma:")
+    a_entry = init_entry(dist_frame, 1)
+    b_label = init_label(dist_frame, 2, "Escala:")
+    b_entry = init_entry(dist_frame, 2)
 
     #Muestreo
     buttonM = init_muestrear_button(dist_frame, 3)
-    buttonM.config(command= lambda: run_triangular(a_entry, b_entry, m_entry))
+    buttonM.config(command= lambda: run_pareto(a_entry, b_entry, semilla_entry))
+
+def tk_weibull():
+    init_distframe()
+
+    semilla1_label = init_label(dist_frame, 0, "Semilla Con. Mul. 1:")
+    semilla1_entry = init_entry(dist_frame, 0)
+
+    semilla2_label = init_label(dist_frame, 1, "Semilla Con. Mul. 2:")
+    semilla2_entry = init_entry(dist_frame, 1)
+
+    a_label = init_label(dist_frame, 2, "Forma:")
+    a_entry = init_entry(dist_frame, 2)
+    b_label = init_label(dist_frame, 3, "Escala:")
+    b_entry = init_entry(dist_frame, 3)
+
+    #Muestreo
+    buttonM = init_muestrear_button(dist_frame, 4)
+    buttonM.config(command= lambda: run_weibull(a_entry, b_entry, semilla1_entry, semilla2_entry))
+
+def tk_triangular():
+    init_distframe()
+
+    semilla_label = init_label(dist_frame, 0, "Semilla Congruencial Multiplicativo:")
+    semilla_entry = init_entry(dist_frame, 0)
+
+    a_label = init_label(dist_frame, 1, "Valor mínimo:")
+    a_entry = init_entry(dist_frame, 1)
+    b_label = init_label(dist_frame, 2, "Valor máximo:")
+    b_entry = init_entry(dist_frame, 2)
+    m_label = init_label(dist_frame, 3, "Moda:")
+    m_entry = init_entry(dist_frame, 3)
+
+    #Muestreo
+    buttonM = init_muestrear_button(dist_frame, 4)
+    buttonM.config(command= lambda: run_triangular(a_entry, b_entry, m_entry, semilla_entry))
 
 def tk_discreta():
     init_distframe()
-    a_label = init_label(dist_frame, 0, "Valor mínimo:")
-    a_entry = init_entry(dist_frame, 0)
-    b_label = init_label(dist_frame, 1, "Valor máximo:")
-    b_entry = init_entry(dist_frame, 1)
+
+    semilla_label = init_label(dist_frame, 0, "Semilla Congruencial Multiplicativo:")
+    semilla_entry = init_entry(dist_frame, 0)
+
+    a_label = init_label(dist_frame, 1, "Valor mínimo:")
+    a_entry = init_entry(dist_frame, 1)
+    b_label = init_label(dist_frame, 2, "Valor máximo:")
+    b_entry = init_entry(dist_frame, 2)
 
     #Muestreo
-    buttonM = init_muestrear_button(dist_frame, 2)
-    buttonM.config(command= lambda: run_discreta(a_entry, b_entry))
+    buttonM = init_muestrear_button(dist_frame, 3)
+    buttonM.config(command= lambda: run_discreta(a_entry, b_entry, semilla_entry))
 
 def tk_bernoulli():
     init_distframe()
-    prob_label = init_label(dist_frame, 0, "Probabilidad:")
-    prob_entry = init_entry(dist_frame, 0)
+
+    semilla_label = init_label(dist_frame, 0, "Semilla Congruencial Multiplicativo:")
+    semilla_entry = init_entry(dist_frame, 0)
+
+    prob_label = init_label(dist_frame, 1, "Probabilidad:")
+    prob_entry = init_entry(dist_frame, 1)
 
     #Muestreo
-    buttonM = init_muestrear_button(dist_frame, 1)
-    buttonM.config(command= lambda: run_bernoulli(prob_entry))
+    buttonM = init_muestrear_button(dist_frame, 2)
+    buttonM.config(command= lambda: run_bernoulli(prob_entry, semilla_entry))
 
 def tk_poisson():
     init_distframe()
-    lambda_label = init_label(dist_frame, 0, "Lambda:")
-    lambda_entry = init_entry(dist_frame, 0)
+
+    semilla_label = init_label(dist_frame, 0, "Semilla Congruencial Multiplicativo:")
+    semilla_entry = init_entry(dist_frame, 0)
+
+    lambda_label = init_label(dist_frame, 1, "Lambda:")
+    lambda_entry = init_entry(dist_frame, 1)
 
     #Muestreo
-    buttonM = init_muestrear_button(dist_frame, 1)
-    buttonM.config(command= lambda: run_poisson(lambda_entry))
+    buttonM = init_muestrear_button(dist_frame, 2)
+    buttonM.config(command= lambda: run_poisson(lambda_entry, semilla_entry))
 
 def tk_binomial():
     init_distframe()
-    prob_label = init_label(dist_frame, 0, "Probabilidad:")
-    prob_entry = init_entry(dist_frame, 0)
+
+    semilla_label = init_label(dist_frame, 0, "Semilla Congruencial Multiplicativo:")
+    semilla_entry = init_entry(dist_frame, 0)
+
+    prob_label = init_label(dist_frame, 1, "Probabilidad:")
+    prob_entry = init_entry(dist_frame, 1)
 
     #Muestreo
-    buttonM = init_muestrear_button(dist_frame, 1)
-    buttonM.config(command= lambda: run_binomial(prob_entry))
+    buttonM = init_muestrear_button(dist_frame, 2)
+    buttonM.config(command= lambda: run_binomial(prob_entry, semilla_entry))
 
 def tk_geometrica():
     init_distframe()
-    prob_label = init_label(dist_frame, 0, "Probabilidad:")
-    prob_entry = init_entry(dist_frame, 0)
+
+    semilla_label = init_label(dist_frame, 0, "Semilla Congruencial Multiplicativo:")
+    semilla_entry = init_entry(dist_frame, 0)
+
+    prob_label = init_label(dist_frame, 1, "Probabilidad:")
+    prob_entry = init_entry(dist_frame, 1)
 
     #Muestreo
-    buttonM = init_muestrear_button(dist_frame, 1)
-    buttonM.config(command= lambda: run_geometrica(prob_entry))
+    buttonM = init_muestrear_button(dist_frame, 2)
+    buttonM.config(command= lambda: run_geometrica(prob_entry, semilla_entry))
 
 #Graficar distribuciones
-def run_exp(lambda_entry):
+def run_exp(semilla_entry, lambda_entry):
     semilla_congru =  semilla_entry.get()
     cant_alea =  cant_alea_entry.get()
     lamb = lambda_entry.get()
@@ -291,13 +367,16 @@ def run_exp(lambda_entry):
         return
     exponencial(int(float(lamb)), int(float(cant_alea)), int(float(semilla_congru))).muestreo()
 
-def run_erlang(lambda_entry, k_entry):
-    semilla_congru =  semilla_entry.get()
+def run_erlang(semillas_entry, lambda_entry, k_entry):
+    semillas_congru =  semillas_entry.get()
     cant_alea =  cant_alea_entry.get()
     lamb = lambda_entry.get()
     k = k_entry.get()
-    if error_in_main(semilla_congru, cant_alea):
-        return
+    arraySemillas = semillas_congru.split(';')
+    arraySemillas = list(map(int, arraySemillas))
+    for semilla in arraySemillas:
+        if error_in_main(semilla, cant_alea):
+            return
     if campo_vacio(lamb, "Lambda"):   
         return True
     if not es_decimal_positivo(lamb):
@@ -308,21 +387,24 @@ def run_erlang(lambda_entry, k_entry):
     if not es_entero_positivo(k):
         messagebox.showinfo(message="El campo 'K' debe ser un número entero positivo", title="Valor incorrecto")
         return
-    erlang(int(float(lamb)), int(float(cant_alea)),int(float(k)), int(float(semilla_congru))).muestreo()
+    print(arraySemillas)
+    erlang(int(float(lamb)), int(float(cant_alea)),int(float(k)), arraySemillas).muestreo()
 
-def run_normal_estandar():
-    semilla_congru =  semilla_entry.get()
+def run_normal_estandar(semilla1_entry, semilla2_entry):
+    semilla1 =  semilla1_entry.get()
+    semilla2 =  semilla2_entry.get()
     cant_alea =  cant_alea_entry.get()
-    if error_in_main(semilla_congru, cant_alea):
+    if error_in_main(semilla1, cant_alea) or error_in_main(semilla2, cant_alea):
         return
-    normal_estandar(int(float(cant_alea)), int(float(semilla_congru))).muestreo()
+    normal_estandar(int(float(cant_alea)), int(float(semilla1)), int(float(semilla2))).muestreo()
 
-def run_normal(media_entry, var_entry):
-    semilla_congru =  semilla_entry.get()
+def run_normal(media_entry, var_entry, semilla1_entry, semilla2_entry):
+    semilla1 =  semilla1_entry.get()
+    semilla2 =  semilla2_entry.get()
     cant_alea =  cant_alea_entry.get()
     media =  media_entry.get()
     varianza =  var_entry.get()
-    if error_in_main(semilla_congru, cant_alea):
+    if error_in_main(semilla1, cant_alea) or error_in_main(semilla2, cant_alea):
         return
     if campo_vacio(media, "Media"):   
         return True
@@ -331,9 +413,9 @@ def run_normal(media_entry, var_entry):
     if not es_decimal_positivo(varianza):
         messagebox.showinfo(message="El campo 'Varianza' debe ser un número real positivo", title="Valor incorrecto")
         return
-    normal(float(media), float(varianza), int(float(cant_alea)), int(float(semilla_congru))).muestreo()
+    normal(float(media), float(varianza), int(float(cant_alea)), int(float(semilla1)), int(float(semilla2))).muestreo()
 
-def run_continua(a_entry, b_entry):
+def run_continua(a_entry, b_entry, semilla_entry):
     semilla_congru =  semilla_entry.get()
     cant_alea =  cant_alea_entry.get()
     a =  a_entry.get()
@@ -349,33 +431,36 @@ def run_continua(a_entry, b_entry):
         return
     uniformeContinua(float(a), float(b), int(float(cant_alea)), int(float(semilla_congru))).muestreo()
 
-def run_chi(grados_entry):
-    semilla_congru =  semilla_entry.get()
+def run_chi(grados_entry, semilla1_entry, semilla2_entry):
+    semilla1 =  semilla1_entry.get()
+    semilla2 =  semilla2_entry.get()
     cant_alea =  cant_alea_entry.get()
     grados =  grados_entry.get()
-    if error_in_main(semilla_congru, cant_alea):
+    if error_in_main(semilla1, cant_alea) or error_in_main(semilla2, cant_alea):
         return
     if campo_vacio(grados, "Grados de Libertad"):   
         return True
     if not es_entero_positivo(grados):
         messagebox.showinfo(message="El campo 'Grados de Libertad' debe ser un número entero positivo", title="Valor incorrecto")
         return
-    chiCuadrado(int(float(grados)), int(float(cant_alea)), int(float(semilla_congru))).muestreo()
+    chiCuadrado(int(float(grados)), int(float(cant_alea)), int(float(semilla1)), int(float(semilla2))).muestreo()
 
-def run_student(grados_entry):
-    semilla_congru =  semilla_entry.get()
+def run_student(grados_entry, semilla1_entry, semilla2_entry, semilla3_entry):
+    semilla1 =  semilla1_entry.get()
+    semilla2 =  semilla2_entry.get()
+    semilla3 =  semilla3_entry.get()
     cant_alea =  cant_alea_entry.get()
     grados =  grados_entry.get()
-    if error_in_main(semilla_congru, cant_alea):
+    if error_in_main(semilla1, cant_alea) or error_in_main(semilla2, cant_alea) or error_in_main(semilla3, cant_alea):
         return
     if campo_vacio(grados, "Grados de Libertad"):   
         return True
     if not es_entero_positivo(grados):
         messagebox.showinfo(message="El campo 'Grados de Libertad' debe ser un número entero positivo", title="Valor incorrecto")
         return
-    tstudent(int(float(grados)), int(float(cant_alea)), int(float(semilla_congru))).muestreo()
+    tstudent(int(float(grados)), int(float(cant_alea)), int(float(semilla1)), int(float(semilla2)), int(float(semilla3))).muestreo()
 
-def run_pareto(a_entry, b_entry):
+def run_pareto(a_entry, b_entry, semilla_entry):
     semilla_congru =  semilla_entry.get()
     cant_alea =  cant_alea_entry.get()
     a =  a_entry.get()
@@ -394,12 +479,13 @@ def run_pareto(a_entry, b_entry):
         return
     pareto(float(a), float(b), int(float(cant_alea)), int(float(semilla_congru))).muestreo()
 
-def run_weibull(a_entry, b_entry):
-    semilla_congru =  semilla_entry.get()
+def run_weibull(a_entry, b_entry, semilla1_entry, semilla2_entry):
+    semilla1 =  semilla1_entry.get()
+    semilla2 =  semilla2_entry.get()
     cant_alea =  cant_alea_entry.get()
     a =  a_entry.get()
     b =  b_entry.get()
-    if error_in_main(semilla_congru, cant_alea):
+    if error_in_main(semilla1, cant_alea) or error_in_main(semilla2, cant_alea):
         return
     if campo_vacio(a, "Forma"):   
         return True
@@ -411,9 +497,9 @@ def run_weibull(a_entry, b_entry):
     if not es_decimal_positivo(b):
         messagebox.showinfo(message="El campo 'Escala' debe ser un número real positivo", title="Valor incorrecto")
         return
-    weibull(float(a), float(b), int(float(cant_alea)), int(float(semilla_congru))).muestreo()
+    weibull(float(a), float(b), int(float(cant_alea)), int(float(semilla1)), int(float(semilla2))).muestreo()
 
-def run_triangular(a_entry, b_entry, m_entry):
+def run_triangular(a_entry, b_entry, m_entry, semilla_entry):
     semilla_congru =  semilla_entry.get()
     cant_alea =  cant_alea_entry.get()
     a =  a_entry.get()
@@ -435,7 +521,7 @@ def run_triangular(a_entry, b_entry, m_entry):
         return
     triangular(float(a), float(b), float(m), int(float(cant_alea)), int(float(semilla_congru))).muestreo()
 
-def run_discreta(a_entry, b_entry):
+def run_discreta(a_entry, b_entry, semilla_entry):
     semilla_congru =  semilla_entry.get()
     cant_alea =  cant_alea_entry.get()
     a =  a_entry.get()
@@ -457,7 +543,7 @@ def run_discreta(a_entry, b_entry):
         return
     uniformeDiscreta(float(a), float(b), int(float(cant_alea)), int(float(semilla_congru))).muestreo()
 
-def run_bernoulli(prob_entry):
+def run_bernoulli(prob_entry, semilla_entry):
     semilla_congru =  semilla_entry.get()
     cant_alea =  cant_alea_entry.get()
     prob = prob_entry.get()
@@ -470,7 +556,7 @@ def run_bernoulli(prob_entry):
         return
     bernoulli(float(prob), int(float(cant_alea)), int(float(semilla_congru))).muestreo()
 
-def run_poisson(lambda_entry):
+def run_poisson(lambda_entry, semilla_entry):
     semilla_congru =  semilla_entry.get()
     cant_alea =  cant_alea_entry.get()
     lamb = lambda_entry.get()
@@ -483,7 +569,7 @@ def run_poisson(lambda_entry):
         return
     poisson(int(float(lamb)), int(float(cant_alea)), int(float(semilla_congru))).muestreo()
 
-def run_binomial(prob_entry):
+def run_binomial(prob_entry, semilla_entry):
     semilla_congru =  semilla_entry.get()
     cant_alea =  cant_alea_entry.get()
     prob = prob_entry.get()
@@ -496,7 +582,7 @@ def run_binomial(prob_entry):
         return
     binomial(float(prob), int(float(cant_alea)), int(float(semilla_congru))).muestreo()
 
-def run_geometrica(prob_entry):
+def run_geometrica(prob_entry, semilla_entry):
     semilla_congru =  semilla_entry.get()
     cant_alea =  cant_alea_entry.get()
     prob = prob_entry.get()
@@ -547,11 +633,11 @@ def dist_changed(event):
         messagebox.showinfo(message="Selección inválida", title="Error")
 
 # Semilla
-semilla_label = ttk.Label(main_frame, text="Semilla Congruencial Multiplicativo:")
-semilla_label.grid(column=0, row=0, sticky=tk.W, padx=5, pady=5)
+#semilla_label = ttk.Label(main_frame, text="Semilla Congruencial Multiplicativo:")
+#semilla_label.grid(column=0, row=0, sticky=tk.W, padx=5, pady=5)
 
-semilla_entry = ttk.Entry(main_frame)
-semilla_entry.grid(column=1, row=0, sticky=tk.EW, padx=5, pady=5)
+#semilla_entry = ttk.Entry(main_frame)
+#semilla_entry.grid(column=1, row=0, sticky=tk.EW, padx=5, pady=5)
 
 # Cantidad numeros aleatorios
 cant_alea_label = ttk.Label(main_frame, text="Cantidad de Números Aleatoreos:")

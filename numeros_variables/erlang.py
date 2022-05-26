@@ -26,7 +26,7 @@ class erlang:
         for i in range(0, self.cant_num_alea):
             value = 1
             for j in self.ArraySemillas:
-                valor = congruencial_mult(self.ArraySemillas[j])
+                valor = congruencial_mult(j)
                 value *= valor.generar()
             x = ( -(1 / self.k * self.lamb) * math.log(value, math.e))
             if x >= 0:
