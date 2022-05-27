@@ -3,6 +3,8 @@ from tkinter import ttk
 from turtle import right
 from tkinter import messagebox
 
+from numpy import array
+
 from binomial import *
 from erlang import *
 from exponencial import *
@@ -91,10 +93,10 @@ def error_in_main(semilla_congru, cant_alea):
     elif not es_entero(semilla_congru):
         messagebox.showinfo(message="El campo 'Semilla Congruencial Multiplicativo' debe ser un número entero", title="Valor incorrecto")
         return True
-    elif campo_vacio(cant_alea, "Cantidad de Números Aleatoreos"):
+    elif campo_vacio(cant_alea, "Cantidad de Números Aleatorios"):
         return True
     elif not es_entero(cant_alea):
-        messagebox.showinfo(message="El campo 'Cantidad de Números Aleatoreos' debe ser un número entero", title="Valor incorrecto")
+        messagebox.showinfo(message="El campo 'Cantidad de Números Aleatorios' debe ser un número entero", title="Valor incorrecto")
         return True
     return False
 
@@ -387,6 +389,9 @@ def run_erlang(semillas_entry, lambda_entry, k_entry):
     if not es_entero_positivo(k):
         messagebox.showinfo(message="El campo 'K' debe ser un número entero positivo", title="Valor incorrecto")
         return
+    if int(k) != len(arraySemillas):   
+        messagebox.showinfo(message="El campo 'K' debe ser igual a la cantidad de semillas", title="Valor incorrecto")
+        return True
     print(arraySemillas)
     erlang(int(float(lamb)), int(float(cant_alea)),int(float(k)), arraySemillas).muestreo()
 
@@ -640,7 +645,7 @@ def dist_changed(event):
 #semilla_entry.grid(column=1, row=0, sticky=tk.EW, padx=5, pady=5)
 
 # Cantidad numeros aleatorios
-cant_alea_label = ttk.Label(main_frame, text="Cantidad de Números Aleatoreos:")
+cant_alea_label = ttk.Label(main_frame, text="Cantidad de Números Aleatorios:")
 cant_alea_label.grid(column=0, row=1, sticky=tk.W, padx=5, pady=5)
 
 cant_alea_entry = ttk.Entry(main_frame)
