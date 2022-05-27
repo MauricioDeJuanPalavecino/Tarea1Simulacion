@@ -28,6 +28,7 @@ class erlang:
             for j in self.ArraySemillas:
                 valor = congruencial_mult(j)
                 value *= valor.generar()
+                self.ArraySemillas[self.ArraySemillas.index(j)] = valor.seed
             x = ( -(1 / self.k * self.lamb) * math.log(value, math.e))
             if x >= 0:
                 arrayNumAleratorios.append(x)
@@ -40,6 +41,7 @@ class erlang:
         for i in self.arrayNumAleratorios:
             print("Esta es la variable x"+str(contador)+":  "+str(i))
             contador+=1
+
 
 """
 er = erlang(2, 100, 2, 19)
