@@ -5,11 +5,11 @@ import math
 
 class chiCuadrado:
 	def __init__(self, grados_libertad, cant_num_alea, semilla_congru1, semilla_congru2):
-		self.cant_num_alea = cant_num_alea
-		self.grados_libertad = grados_libertad
-		self.congru1 = congruencial_mult(semilla_congru1)
-		self.congru2 = congruencial_mult(semilla_congru2)
-		self.arrayNumAleratorios = self.formular()
+		self.cant_num_alea = cant_num_alea  #cantidad de numeros aleatorios
+		self.grados_libertad = grados_libertad #grados de libertad de chi cuadrado
+		self.congru1 = congruencial_mult(semilla_congru1) #metodo de generacion de v.a. con una semilla
+		self.congru2 = congruencial_mult(semilla_congru2) #metodo de generacion de v.a. con otra semilla
+		self.arrayNumAleratorios = self.formular() #numeros aleatorios generados
 		
     #Getters
 	def get_array(self):
@@ -22,8 +22,8 @@ class chiCuadrado:
 		z2 = 0
 		for i in range(0, int(self.cant_num_alea/2)):
     		#Generar numeros aleatorios
-			value1 = self.congru1.generar()
-			value2 = self.congru2.generar()
+			value1 = self.congru1.generar() #generacion del numero pseudo aleatorio con la primera semilla asignada
+			value2 = self.congru2.generar() #generacion del numero pseudo aleatorio con la segunda semilla asignada
 			
 			z1 = math.sqrt(-2*math.log(value1,math.e))*math.cos(2*math.pi*value2)
 			z2 = math.sqrt(-2*math.log(value1,math.e))*math.sin(2*math.pi*value2)

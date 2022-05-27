@@ -5,11 +5,11 @@ import matplotlib.pyplot as plt
 
 class uniformeDiscreta:
     def __init__(self, a, b, cant_num_alea, semilla_congru):
-        self.a = a
-        self.b = b
-        self.cant_num_alea = cant_num_alea
-        self.congru = congruencial_mult(semilla_congru)
-        self.arrayNumAleratorios = self.formular()
+        self.a = a #valor a para uniforme discreta
+        self.b = b #valor b para uniforme discreta
+        self.cant_num_alea = cant_num_alea #cantidad de numeros aleatorios
+        self.congru = congruencial_mult(semilla_congru) #metodo de generacion de v.a. con semilla
+        self.arrayNumAleratorios = self.formular() #numeros aleatorios generados
       
     #GETTERS
     def get_array(self):
@@ -18,7 +18,7 @@ class uniformeDiscreta:
     def formular(self):
         arrayNumAleratorios = []
         for i in range(0, self.cant_num_alea):
-            value = self.congru.generar()
+            value = self.congru.generar() # se genera el valor pseudo-aleatoreo con el metodo congruencial y la semilla asiganada
             x = int(self.cant_num_alea*value) + 1
             if(x >= self.a and x<= self.b):
                 arrayNumAleratorios.append(x)

@@ -5,12 +5,12 @@ import matplotlib.pyplot as plt
 
 class normal:
     def __init__(self, media, varianza, cant_num_alea, semilla_congru1, semilla_congru2):
-        self.media = media
-        self.desv_tipica = math.sqrt(varianza)
-        self.cant_num_alea = cant_num_alea
-        self.congru1 = congruencial_mult(semilla_congru1)
-        self.congru2 = congruencial_mult(semilla_congru2)
-        self.arrayNumAleratorios = self.formular()
+        self.media = media #media
+        self.desv_tipica = math.sqrt(varianza) #desviacion tipica
+        self.cant_num_alea = cant_num_alea #cantidad de numeros aleatorios
+        self.congru1 = congruencial_mult(semilla_congru1) #metodo de generacion de v.a. con primera semilla
+        self.congru2 = congruencial_mult(semilla_congru2) #metodo de generacion de v.a. con segunda semilla
+        self.arrayNumAleratorios = self.formular() #numeros aleatorios generados
         
 
     #GETTERS
@@ -23,8 +23,8 @@ class normal:
         z1 = 0
         z2 = 0
         for i in range(0, int(self.cant_num_alea/2)):
-            value1 = self.congru1.generar()
-            value2 = self.congru2.generar()
+            value1 = self.congru1.generar() # se genera el valor pseudo-aleatoreo con el metodo congruencial y la primera semilla asiganada
+            value2 = self.congru2.generar() # se genera el valor pseudo-aleatoreo con el metodo congruencial y la segunda semilla asiganada
             z1 = math.sqrt(-2 * math.log(value1,math.e)) * math.cos(2 * math.pi * value2)
             z2 = math.sqrt(-2 * math.log(value1,math.e)) * math.sin(2 * math.pi * value2)
             arrayNumAleratorios.append(z1)

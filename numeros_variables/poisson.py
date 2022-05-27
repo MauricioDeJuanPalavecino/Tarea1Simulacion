@@ -5,10 +5,10 @@ import math
 
 class poisson:
     def __init__(self, lamb, cant_num_alea, semilla_congru):
-        self.cant_num_alea = cant_num_alea
-        self.lamb = lamb
-        self.congru = congruencial_mult(semilla_congru)
-        self.arrayNumAleratorios = self.formular()
+        self.cant_num_alea = cant_num_alea #cantidad de numeros aleatorios
+        self.lamb = lamb #lambda
+        self.congru = congruencial_mult(semilla_congru) #metodo de generacion de v.a. con semilla
+        self.arrayNumAleratorios = self.formular() #numeros aleatorios generados
       
     def get_array(self):
         return self.arrayNumAleratorios
@@ -20,7 +20,7 @@ class poisson:
         variables = 0
         valorU = 1
         for i in range(0,self.cant_num_alea):
-            value = self.congru.generar()
+            value = self.congru.generar() # se genera el valor pseudo-aleatoreo con el metodo congruencial y la semilla asiganada
             valorU*=value
             if(valorU<=math.exp(-self.lamb)):
                 arrayNumAleratorios.append(variables)

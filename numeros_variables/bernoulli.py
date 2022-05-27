@@ -5,18 +5,19 @@ import matplotlib.pyplot as plt
 
 class bernoulli:
     def __init__(self, prob, cant_num_alea, semilla_congru):
-        self.cant_num_alea = cant_num_alea
-        self.prob = prob
-        self.congru = congruencial_mult(semilla_congru)
-        self.arrayNumAleratorios = self.formular()
-       
+        self.cant_num_alea = cant_num_alea #cantidad de numeros aleatorios
+        self.prob = prob #probabilidad
+        self.congru = congruencial_mult(semilla_congru) #metodo de generacion de v.a. con semilla
+        self.arrayNumAleratorios = self.formular() #numeros aleatorios generados
+    
+    
     def get_array(self):
         return self.arrayNumAleratorios
     
     def formular(self):
         arrayNumAleratorios = []
         for i in range(0, self.cant_num_alea):
-            value = self.congru.generar()
+            value = self.congru.generar() # se genera el valor pseudo-aleatoreo con el metodo congruencial y la semilla asiganada
             x = 0
             if(value <= self.prob):
                 x = 1

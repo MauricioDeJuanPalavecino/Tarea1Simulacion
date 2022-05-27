@@ -6,12 +6,12 @@ import matplotlib.pyplot as plt
 
 class triangular:
     def __init__(self, a, b, c,cant_num_alea, semilla_congru):
-        self.cant_num_alea = cant_num_alea
-        self.a = a
-        self.b = b
-        self.c = c
-        self.congru = congruencial_mult(semilla_congru)
-        self.arrayNumAleratorios = self.formular()
+        self.cant_num_alea = cant_num_alea #cantidad de numeros aleatorios
+        self.a = a #valor a de distribucion triangular
+        self.b = b #valor b de distribucion triangular
+        self.c = c #valor c de distribucion triangular
+        self.congru = congruencial_mult(semilla_congru) #metodo de generacion de v.a. con semilla
+        self.arrayNumAleratorios = self.formular() #numeros aleatorios generados
        
     #GETTERS
     def get_array(self):
@@ -23,7 +23,7 @@ class triangular:
     def formular(self):
         arrayNumAleratorios = []
         for i in range(0, self.cant_num_alea):
-            value = self.congru.generar()
+            value = self.congru.generar() # se genera el valor pseudo-aleatoreo con el metodo congruencial y la semilla asiganada
             if(value <= ((self.c-self.a)/(self.b-self.a))):
                 x =self.a + math.sqrt(value * ((self.b - self.a)*(self.c - self.a)))
                 arrayNumAleratorios.append(x)
