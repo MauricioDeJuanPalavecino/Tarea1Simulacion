@@ -138,12 +138,10 @@ def tk_erlang():
 
     lambda_label = init_label(dist_frame, 1, "Lambda:")
     lambda_entry = init_entry(dist_frame, 1)
-    k_label = init_label(dist_frame, 2, "K:")
-    k_entry = init_entry(dist_frame, 2)
 
     #Muestreo
-    buttonM = init_muestrear_button(dist_frame, 3)
-    buttonM.config(command= lambda: run_erlang(semillas_entry, lambda_entry, k_entry))
+    buttonM = init_muestrear_button(dist_frame, 2)
+    buttonM.config(command= lambda: run_erlang(semillas_entry, lambda_entry))
 
 def tk_normal_estandar():
     init_distframe()
@@ -338,9 +336,12 @@ def tk_binomial():
     prob_label = init_label(dist_frame, 1, "Probabilidad:")
     prob_entry = init_entry(dist_frame, 1)
 
+    num_ensayos_label = init_label(dist_frame, 2, "Número de ensayos:")
+    num_ensayos_entry = init_entry(dist_frame, 2)
+
     #Muestreo
-    buttonM = init_muestrear_button(dist_frame, 2)
-    buttonM.config(command= lambda: run_binomial(prob_entry, semilla_entry))
+    buttonM = init_muestrear_button(dist_frame, 3)
+    buttonM.config(command= lambda: run_binomial(prob_entry, semilla_entry, num_ensayos_entry))
 
 def tk_geometrica():
     init_distframe()
@@ -364,16 +365,15 @@ def run_exp(semilla_entry, lambda_entry):
         return
     if campo_vacio(lamb, "Lambda"):   
         return True
-    if not es_entero(lamb):    
-        messagebox.showinfo(message="El campo 'Lambda' debe ser un número entero", title="Valor incorrecto")
+    if not es_entero_positivo(lamb):    
+        messagebox.showinfo(message="El campo 'Lambda' debe ser un número entero y positivo", title="Valor incorrecto")
         return
     exponencial(int(float(lamb)), int(float(cant_alea)), int(float(semilla_congru))).muestreo()
 
-def run_erlang(semillas_entry, lambda_entry, k_entry):
+def run_erlang(semillas_entry, lambda_entry):
     semillas_congru =  semillas_entry.get()
     cant_alea =  cant_alea_entry.get()
     lamb = lambda_entry.get()
-    k = k_entry.get()
     arraySemillas = semillas_congru.split(';')
     arraySemillas = list(map(int, arraySemillas))
     for semilla in arraySemillas:
@@ -384,16 +384,8 @@ def run_erlang(semillas_entry, lambda_entry, k_entry):
     if not es_decimal_positivo(lamb):
         messagebox.showinfo(message="El campo 'Lambda' debe ser un número real positivo", title="Valor incorrecto")
         return
-    if campo_vacio(k, "K"):   
-        return True
-    if not es_entero_positivo(k):
-        messagebox.showinfo(message="El campo 'K' debe ser un número entero positivo", title="Valor incorrecto")
-        return
-    if int(k) != len(arraySemillas):   
-        messagebox.showinfo(message="El campo 'K' debe ser igual a la cantidad de semillas", title="Valor incorrecto")
-        return True
     print(arraySemillas)
-    erlang(int(float(lamb)), int(float(cant_alea)),int(float(k)), arraySemillas).muestreo()
+    erlang(int(float(lamb)), int(float(cant_alea)), arraySemillas).muestreo()
 
 def run_normal_estandar(semilla1_entry, semilla2_entry):
     semilla1 =  semilla1_entry.get()
@@ -507,9 +499,9 @@ def run_weibull(a_entry, b_entry, semilla1_entry, semilla2_entry):
 def run_triangular(a_entry, b_entry, m_entry, semilla_entry):
     semilla_congru =  semilla_entry.get()
     cant_alea =  cant_alea_entry.get()
-    a =  a_entry.get()
-    b =  b_entry.get()
-    m = m_entry.get()
+    a =  float(a_entry.get())
+    b =  float(b_entry.get())
+    m = float(m_entry.get())
     if error_in_main(semilla_congru, cant_alea):
         return
     if campo_vacio(a, "Valor mínimo"):   
@@ -521,7 +513,7 @@ def run_triangular(a_entry, b_entry, m_entry, semilla_entry):
     if a >= b:
         messagebox.showinfo(message="El campo 'Valor mínimo' debe ser menor que el campo 'Valor máximo'", title="Valor incorrecto")
         return
-    if m < a or m > b:
+    if ( m < a) or (m > b):
         messagebox.showinfo(message="El campo 'Moda' debe ser mayor o igual que el campo 'Valor mínimo' y menor o igual al campo 'Valor máximo'", title="Valor incorrecto")
         return
     triangular(float(a), float(b), float(m), int(float(cant_alea)), int(float(semilla_congru))).muestreo()
@@ -537,16 +529,16 @@ def run_discreta(a_entry, b_entry, semilla_entry):
         return True
     if campo_vacio(b, "Valor máximo"):   
         return True
-    if not es_entero_positivo(a):
-        messagebox.showinfo(message="El campo 'Valor mínimo' debe ser un número entero positivo", title="Valor incorrecto")
+    if not es_entero(a):
+        messagebox.showinfo(message="El campo 'Valor mínimo' debe ser un número entero", title="Valor incorrecto")
         return
-    if not es_entero_positivo(b):
-        messagebox.showinfo(message="El campo 'Valor máximo' debe ser un número entero positivo", title="Valor incorrecto")
+    if not es_entero(b):
+        messagebox.showinfo(message="El campo 'Valor máximo' debe ser un número entero", title="Valor incorrecto")
         return
-    if a >= b:
+    if int(a) >= int(b):
         messagebox.showinfo(message="El campo 'Valor mínimo' debe ser menor que el campo 'Valor máximo'", title="Valor incorrecto")
         return
-    uniformeDiscreta(float(a), float(b), int(float(cant_alea)), int(float(semilla_congru))).muestreo()
+    uniformeDiscreta(int(a), int(b), int(float(cant_alea)), int(float(semilla_congru))).muestreo()
 
 def run_bernoulli(prob_entry, semilla_entry):
     semilla_congru =  semilla_entry.get()
@@ -574,18 +566,24 @@ def run_poisson(lambda_entry, semilla_entry):
         return
     poisson(int(float(lamb)), int(float(cant_alea)), int(float(semilla_congru))).muestreo()
 
-def run_binomial(prob_entry, semilla_entry):
+def run_binomial(prob_entry, semilla_entry, num_ensayos_entry):
     semilla_congru =  semilla_entry.get()
     cant_alea =  cant_alea_entry.get()
     prob = prob_entry.get()
+    num_ensayos = num_ensayos_entry.get()
     if error_in_main(semilla_congru, cant_alea):
         return
     if campo_vacio(prob, "Probabilidad"):   
         return True
+    if campo_vacio(num_ensayos, "Número de ensayos"):   
+        return True
+    if not es_entero_positivo(num_ensayos):
+        messagebox.showinfo(message="El campo 'Número de ensayos' debe ser un número entero positivo", title="Valor incorrecto")
+        return
     if (not es_decimal(prob)) or float(prob) < 0 or float(prob) > 1:    
         messagebox.showinfo(message="El campo 'Probabilidad' debe ser un número entre 0 y 1", title="Valor incorrecto")
         return
-    binomial(float(prob), int(float(cant_alea)), int(float(semilla_congru))).muestreo()
+    binomial(float(prob), int(float(cant_alea)), int(float(semilla_congru)), int(num_ensayos)).muestreo()
 
 def run_geometrica(prob_entry, semilla_entry):
     semilla_congru =  semilla_entry.get()

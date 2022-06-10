@@ -27,6 +27,9 @@ class uniformeDiscreta:
     def muestreo(self):
         print("Estas son las variables de la distribucion uniforme discreta")
         contador = 1
+        if len(self.arrayNumAleratorios) == 0:
+            print("No se han podido generar variables aleatorias debido a la formula de la tranformada inversa investigada y el metodo congruencial multiplicativo")
+        
         for i in self.arrayNumAleratorios:
             print("Esta es la variable x"+str(contador)+":  "+str(i))
             contador+=1
